@@ -136,6 +136,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="base_scene.cpp" />
     <ClCompile Include="box.cpp" />
     <ClCompile Include="cube.cpp" />
     <ClCompile Include="main.cpp" />
@@ -143,6 +144,7 @@
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="base_scene.h" />
     <ClInclude Include="box.h" />
     <ClInclude Include="cube.h" />
     <ClInclude Include="tank.h" />

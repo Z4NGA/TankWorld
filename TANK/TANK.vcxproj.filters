@@ -30,6 +30,9 @@
     <ClCompile Include="box.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="base_scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tank.h">
@@ -39,6 +42,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="box.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="base_scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
