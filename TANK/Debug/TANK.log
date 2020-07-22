@@ -1,0 +1,580 @@
+﻿  box.cpp
+C:\Users\zgaya\source\repos\TANK\box.cpp(10,49): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\box.cpp(10,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\box.cpp(10,17): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\box.cpp(28,25): warning C4244: 'argument': conversion from 'double' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\zgaya\source\repos\TANK\box.cpp(29,24): warning C4244: 'argument': conversion from 'double' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\zgaya\source\repos\TANK\box.cpp(31,19): warning C4244: 'argument': conversion from 'double' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\zgaya\source\repos\TANK\box.cpp(32,25): warning C4244: 'argument': conversion from 'double' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\zgaya\source\repos\TANK\box.cpp(33,24): warning C4244: 'argument': conversion from 'double' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+  cube.cpp
+  main.cpp
+C:\Users\zgaya\source\repos\TANK\main.cpp(22,18): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\zgaya\source\repos\TANK\main.cpp(22,32): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\zgaya\source\repos\TANK\main.cpp(77,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\zgaya\source\repos\TANK\main.cpp(77,40): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\zgaya\source\repos\TANK\main.cpp(80,24): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\main.cpp(81,25): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\main.cpp(84,25): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\main.cpp(85,24): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\main.cpp(232,28): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\zgaya\source\repos\TANK\main.cpp(234,19): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\zgaya\source\repos\TANK\main.cpp(236,29): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\zgaya\source\repos\TANK\main.cpp(238,19): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\zgaya\source\repos\TANK\main.cpp(241,19): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\zgaya\source\repos\TANK\main.cpp(244,19): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\zgaya\source\repos\TANK\main.cpp(247,19): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\zgaya\source\repos\TANK\main.cpp(258,17): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\zgaya\source\repos\TANK\main.cpp(264,18): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\zgaya\source\repos\TANK\main.cpp(270,18): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\zgaya\source\repos\TANK\main.cpp(276,17): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\zgaya\source\repos\TANK\main.cpp(281,19): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\zgaya\source\repos\TANK\main.cpp(289,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\main.cpp(290,29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\main.cpp(317,29): warning C4305: 'argument': truncation from 'double' to 'float'
+  tank.cpp
+C:\Users\zgaya\source\repos\TANK\tank.cpp(25,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(51,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(52,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(66,43): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(75,23): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(78,23): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(87,23): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(91,28): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(91,18): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(93,19): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(97,35): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(97,23): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(97,12): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(104,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(104,32): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(104,53): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(113,58): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(113,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(113,26): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(115,59): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(115,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(115,26): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(117,38): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(117,23): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(119,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(119,23): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(126,38): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(126,23): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(127,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(127,23): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(128,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(128,32): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(128,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(129,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(129,32): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(129,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(136,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(136,32): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(136,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(137,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(137,32): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(137,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(138,58): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(138,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(138,25): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(139,57): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(139,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(139,25): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(146,58): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(146,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(146,25): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(147,57): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(147,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(147,25): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(148,44): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(148,32): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(148,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(149,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(149,32): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(149,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(155,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(155,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(155,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(156,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(156,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(156,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(157,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(157,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(157,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(158,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(158,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(158,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(167,59): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(167,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(167,26): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(168,60): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(168,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(168,26): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(169,38): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(169,24): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(170,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(170,24): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(175,38): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(175,24): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(176,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(176,24): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(177,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(177,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(177,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(178,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(178,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(178,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(183,44): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(183,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(183,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(184,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(184,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(184,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(185,60): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(185,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(185,25): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(186,59): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(186,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(186,25): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(191,57): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(191,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(191,25): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(192,58): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(192,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(192,25): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(193,48): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(193,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(193,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(194,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(194,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(194,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(199,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(199,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(199,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(200,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(200,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(200,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(201,48): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(201,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(201,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(202,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(202,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(202,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(208,60): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(208,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(208,26): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(209,62): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(209,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(209,26): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(210,61): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(210,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(210,26): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(211,59): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(211,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(211,26): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(216,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(216,32): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(216,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(217,60): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(217,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(217,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(218,59): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(218,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(218,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(219,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(219,32): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(219,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(223,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(223,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(223,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(224,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(224,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(224,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(225,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(225,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(225,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(226,44): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(226,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(226,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(233,60): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(233,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(233,26): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(234,59): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(234,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(234,26): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(235,38): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(235,23): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(236,38): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(236,24): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(241,38): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(241,23): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(242,38): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(242,24): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(243,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(243,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(243,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(244,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(244,32): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(244,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(249,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(249,32): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(249,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(250,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(250,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(250,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(251,74): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(251,51): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(251,25): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(252,59): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(252,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(252,25): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(257,59): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(257,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(257,25): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(258,74): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(258,51): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(258,25): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(259,61): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(259,38): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(259,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(260,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(260,32): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(260,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(265,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(265,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(265,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(266,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(266,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(266,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(267,48): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(267,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(267,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(268,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(268,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(268,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(329,60): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(329,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(329,26): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(330,59): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(330,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(330,26): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(331,38): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(331,23): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(332,38): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(332,24): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(337,38): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(337,23): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(338,38): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(338,24): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(339,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(339,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(339,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(340,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(340,32): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(340,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(345,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(345,32): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(345,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(346,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(346,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(346,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(347,74): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(347,51): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(347,25): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(348,59): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(348,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(348,25): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(353,59): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(353,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(353,25): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(354,74): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(354,51): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(354,25): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(355,61): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(355,38): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(355,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(356,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(356,32): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(356,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(361,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(361,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(361,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(362,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(362,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(362,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(363,48): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(363,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(363,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(364,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(364,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(364,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(375,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(375,34): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(375,54): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(375,68): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(375,80): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(379,37): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(380,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(380,83): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(390,37): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(391,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(391,95): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(405,37): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(406,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(406,82): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(416,37): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(417,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(417,65): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(431,37): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(432,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(432,76): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(442,37): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(443,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(443,80): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(461,29): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(461,17): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(466,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(466,34): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(466,54): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(536,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(536,34): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(536,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(537,23): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(539,24): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(541,30): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(543,31): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(545,35): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(545,21): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(551,24): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(553,54): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(566,31): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(567,54): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(579,32): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(580,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(583,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(583,21): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(585,23): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(587,24): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(589,30): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(591,31): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(597,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(597,34): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(597,54): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(627,35): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(627,19): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(628,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(628,66): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(631,29): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(631,15): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(634,29): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(634,15): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(636,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(640,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(640,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(641,36): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(641,21): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(642,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(642,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(643,36): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(643,21): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(644,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(644,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(645,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(645,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(646,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(646,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(647,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(647,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(648,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(648,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(649,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(649,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(650,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(650,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(651,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(651,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(652,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(652,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(653,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(653,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(654,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(654,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(655,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(655,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(656,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(656,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(659,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(659,66): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(662,29): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(662,15): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(665,29): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(665,15): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(667,23): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(671,24): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(672,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(672,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(673,24): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(674,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(674,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(675,35): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(675,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(676,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(676,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(677,35): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(677,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(678,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(678,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(679,28): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(679,39): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(680,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(680,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(681,26): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(682,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(682,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(683,26): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(684,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(684,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(688,44): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(688,28): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(689,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(689,66): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(692,29): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(692,15): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(695,29): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(695,15): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(697,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(701,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(701,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(702,36): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(702,21): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(703,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(703,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(704,36): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(704,21): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(705,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(705,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(706,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(706,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(707,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(707,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(708,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(708,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(709,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(709,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(710,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(710,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(711,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(711,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(712,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(712,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(713,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(713,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(714,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(714,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(715,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(715,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(716,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(716,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(717,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(717,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(720,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(720,66): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(723,29): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(723,15): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(726,29): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(726,15): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(728,23): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(732,24): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(733,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(733,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(734,24): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(735,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(735,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(736,35): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(736,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(737,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(737,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(738,35): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(738,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(739,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(739,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(740,28): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(740,39): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(741,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(741,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(742,26): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(743,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(743,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(744,26): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(745,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(745,13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(752,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(752,34): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(752,54): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(775,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(775,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(780,35): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(780,23): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(784,34): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(784,21): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(793,38): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(793,20): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(798,38): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(798,24): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(799,34): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(799,21): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(809,37): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(810,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(810,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(810,18): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(810,90): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(811,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(811,18): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(812,36): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(812,17): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(812,80): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(813,45): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(813,30): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(813,17): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(819,37): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(820,47): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(820,33): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(820,18): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(820,91): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(821,38): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(821,18): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(822,37): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(822,17): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(822,81): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\zgaya\source\repos\TANK\tank.cpp(823,46): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(823,30): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\zgaya\source\repos\TANK\tank.cpp(823,17): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  texture.cpp
+  Generating Code...
+LINK : warning LNK4044: unrecognized option '/lglu32'; ignored
+SOIL.lib(image_DXT.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'SOIL.lib(image_DXT.obj)' or at 'C:\Users\zgaya\source\repos\TANK\Debug\vc100.pdb'; linking object as if no debug info
+SOIL.lib(image_helper.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'SOIL.lib(image_helper.obj)' or at 'C:\Users\zgaya\source\repos\TANK\Debug\vc100.pdb'; linking object as if no debug info
+SOIL.lib(SOIL.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'SOIL.lib(SOIL.obj)' or at 'C:\Users\zgaya\source\repos\TANK\Debug\vc100.pdb'; linking object as if no debug info
+SOIL.lib(stb_image_aug.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'SOIL.lib(stb_image_aug.obj)' or at 'C:\Users\zgaya\source\repos\TANK\Debug\vc100.pdb'; linking object as if no debug info
+  TANK.vcxproj -> C:\Users\zgaya\source\repos\TANK\Debug\TANK.exe
