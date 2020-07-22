@@ -138,7 +138,10 @@
   <ItemGroup>
     <ClCompile Include="base_scene.cpp" />
     <ClCompile Include="box.cpp" />
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="cube.cpp" />
+    <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="tank.cpp" />
     <ClCompile Include="texture.cpp" />
@@ -146,7 +149,10 @@
   <ItemGroup>
     <ClInclude Include="base_scene.h" />
     <ClInclude Include="box.h" />
+    <ClInclude Include="Controller.h" />
     <ClInclude Include="cube.h" />
+    <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="tank.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

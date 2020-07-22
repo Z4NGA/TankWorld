@@ -8,6 +8,8 @@
 #include <vector>
 #include "box.h"
 #include "base_scene.h"
+#include "GameEngine.h"
+#include "Controller.h"
 #include <math.h>
 #define M_PI acos(-1.)
 int value = 0;
@@ -19,6 +21,7 @@ box* b;
 box* b2;
 box* b3;
 base_scene* base; 
+GameEngine* ge;
 std::vector<GLuint> textures; 
 std::vector<float> xdebug {50,150,300};
 std::vector<float> zdebug ;
@@ -48,11 +51,7 @@ bool iscolliding(std::vector<float> border1, std::vector<float> border2) {
 	//easier to check when 2 objects dont collide 
 	return !(r1<l2 || l1>r2 || bk1<f2 || f1>bk2 || b1>t2 || t1<b2);
 }
-void setcampos(float x, float y, float z) { // sets the camera position
-	CamXpos = x;
-	camYpos = y;
-	camZpos = z;
-}
+
 void inline resetLook() {
 	glPopMatrix();//pop the latest matrix on stack to modify if exist
 	glLoadIdentity();//reset the currently loaded matrix if it exists
@@ -247,6 +246,7 @@ void Animate(int v)
 
 int main(int argc, char** argv)
 {
+	ge = new GameEngine();
 	base = new base_scene("scene2");
 	b = new box(0.5, 0.5, 0.5);
 	b2 = new box(0.5, 0.5, 0.5);
