@@ -10,6 +10,9 @@
 #include "base_scene.h"
 #include "GameEngine.h"
 #include "Controller.h"
+#include "Scene.h"
+#include "gameScene.h"
+#include "menuScene.h"
 #include <math.h>
 #define M_PI acos(-1.)
 int value = 0;
@@ -20,13 +23,20 @@ tank* t;
 box* b;
 box* b2;
 box* b3;
-base_scene* base; 
+//base_scene* base; 
 GameEngine* ge;
+Scene* mainmenu; 
+Scene* base;
+Scene* beach; 
+Scene* forest;
 std::vector<GLuint> textures; 
 std::vector<float> xdebug {50,150,300};
 std::vector<float> zdebug ;
-
-GLuint tex_2d,sky , ground, boxtx , redboxtx,wall;
+GLuint tex_2d,boxtx, redboxtx;
+GLuint sky1, ground1, wall1;//set of textures scene1 
+GLuint sky2, ground2, wall2;//set of textures scene2 
+GLuint sky3, ground3, wall3;//set of textures scene3 
+GLuint menubg, play, controls, credits, options, quit;//menu textures
 int h, w;
 float CamXpos=0., camYpos=1., camZpos=0.; //defines where the cam stands
 float centerx=0.7, centery= 0.9, centerz=0.;  //defines where the cam looks
@@ -37,28 +47,32 @@ void loadtext() {
 	GLuint yellow = SOIL_load_OGL_texture("camoyellow100.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS);
 	boxtx = SOIL_load_OGL_texture("box.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS);
 	redboxtx = SOIL_load_OGL_texture("redbox.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS);
-	wall = SOIL_load_OGL_texture("wall.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
-	ground = SOIL_load_OGL_texture("groundbetter.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
-	sky = SOIL_load_OGL_texture("sky800.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	///
+	///  LOADING game scenes TEXTURES
+	///
+	wall1 = SOIL_load_OGL_texture("wall.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	ground1 = SOIL_load_OGL_texture("groundbetter.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	sky1 = SOIL_load_OGL_texture("sky800.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	wall2 = SOIL_load_OGL_texture("wall2.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	ground2 = SOIL_load_OGL_texture("ground2.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	sky2 = SOIL_load_OGL_texture("sky2.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	wall3 = SOIL_load_OGL_texture("wall3.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	ground3 = SOIL_load_OGL_texture("ground3.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	sky3 = SOIL_load_OGL_texture("sky3.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	///
+	///  LOADING MENU TEXTURES
+	///
+	menubg = SOIL_load_OGL_texture("menubg.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	play = SOIL_load_OGL_texture("play.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	controls = SOIL_load_OGL_texture("controls.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	credits = SOIL_load_OGL_texture("credits.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	options = SOIL_load_OGL_texture("options.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	quit = SOIL_load_OGL_texture("quit.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 
 	textures.push_back(green); textures.push_back(blue); textures.push_back(grey);  textures.push_back(yellow);
 }
-bool iscolliding(std::vector<float> border1, std::vector<float> border2) {
-	//checks 3d collision
-	//border vec will be defined as left,right,top,bot,front,back
-	float l1 = border1[0], r1 = border1[1], t1 = border1[2], b1 = border1[3], f1 = border1[4], bk1 = border1[5];
-	float l2 = border2[0], r2 = border2[1], t2 = border2[2], b2 = border2[3], f2 = border2[4], bk2 = border2[5];
-	//easier to check when 2 objects dont collide 
-	return !(r1<l2 || l1>r2 || bk1<f2 || f1>bk2 || b1>t2 || t1<b2);
-}
 
-void inline resetLook() {
-	glPopMatrix();//pop the latest matrix on stack to modify if exist
-	glLoadIdentity();//reset the currently loaded matrix if it exists
-	gluLookAt(CamXpos, camYpos, camZpos, centerx + CamXpos, centery, centerz + camZpos - 1., 0., 1., 0.);//set the lookAt
-	//look behind on the z axis so the left side is -x , right is +x , front -z , back is +z
-	glPushMatrix();
-}
+
 void Init()
 {	
 	loadtext();
@@ -94,7 +108,9 @@ void drawGrid() {
 		glEnd();
 	}
 }
-
+void drawcrosshair() {
+	//pass 
+}
 void RenderScene() //Zeichenfunktion
 {
 	/// <summary>
@@ -102,7 +118,7 @@ void RenderScene() //Zeichenfunktion
 	/// </summary>
 	glPopMatrix();//pop the latest matrix on stack to modify if exist
 	glLoadIdentity();//reset the currently loaded matrix if it exists
-	gluLookAt(CamXpos,camYpos,camZpos,centerx+CamXpos, centery, centerz+camZpos-1., 0., 1., 0.);//set the lookAt
+	gluLookAt(ge->controller->CamXpos, ge->controller->camYpos, ge->controller->camZpos, ge->controller->centerx+ ge->controller->CamXpos, ge->controller->centery, ge->controller->centerz+ ge->controller->camZpos-1., 0., 1., 0.);//set the lookAt
 	//look behind on the z axis so the left side is -x , right is +x , front -z , back is +z
 	glPushMatrix();
 	// Hier befindet sich der Code der in jedem Frame ausgefuehrt werden muss
@@ -118,15 +134,19 @@ void RenderScene() //Zeichenfunktion
 	position p2(1, 1, 1);
 	position::print(p - p2);
 	*/
-	base->draw();
+	ge->drawCurrentScene();
+	//drawcrosshair();z
+	//glPopMatrix();
+	//cube(0.2,0.2,0.2,boxtx);
+	//t->spawn((value % 2));
 	/*tright->spawn((value % 2) + 1);
 	resetLook();
 	tbehind->spawn((value % 2) + 1);
 	resetLook();*/
 	//t->spawn((value % 2) + 1);
-	b->spawn();
-	b2->spawn();
-	b3->spawn();
+	//b->spawn();
+	//b2->spawn();
+	//b3->spawn();
 	glLoadIdentity();
 	glutSwapBuffers();
 }
@@ -151,7 +171,9 @@ void Reshape(int width, int height)
 	// Graphikfensters statt
 }
 void keyboardfunc(unsigned char key, int x, int y) {
-	float xpos = (float)x;
+	ge->controller->keyboardfunc(key, x, y);
+	
+	/*float xpos = (float)x;
 	float ypos = (float)y;
 	switch (key) {
 	case 'z':t->movetank(0.015);//move forward
@@ -182,10 +204,12 @@ void keyboardfunc(unsigned char key, int x, int y) {
 		break;
 	}
 	std::cout << key << " was pressed at " << xpos << " , " << ypos << std::endl; 
-	glutPostRedisplay();
+	*/glutPostRedisplay();
 }
 void arrowfunc(int key,int x,int y) {// handles the special keys such as arrows
-	switch (key) {
+	ge->controller->arrowfunc(key, x, y);
+									 /*
+	 switch (key) {
 	case GLUT_KEY_UP:
 		std::cout << " ARROW_UP\n";
 		t->tiltcannon(1);
@@ -216,9 +240,12 @@ void arrowfunc(int key,int x,int y) {// handles the special keys such as arrows
 		//can be upgraded to go left right forward back according to the direction vector
 		break;
 	}
+	*/
+
 }
 void noclick_motion(int x, int y) {
-	//gonna set higher sensitivity for now due to the small screen size
+	ge->controller->noclick_motion(x, y);
+	/*//gonna set higher sensitivity for now due to the small screen size
 	std::cout<< "\033[31mMouseXpos = " << x << ", MouseYpos = "<<y<<" .\033[0m\n";
 	float angle = ((float(x)-300.) / (float)300.) * 180.+90;
 	centerx = 2. * cos(angle * M_PI / 180.);
@@ -226,7 +253,7 @@ void noclick_motion(int x, int y) {
 	//centerx = float(x - 300.) / (float)xdebug.at(xdebug.size()-1);
 	centery = -float(y - 300.) / 50.;
 	std::cout << "\033[34mCenterx = " << centerx << " .\033[0m\n";
-	std::cout << "\033[34mCentery = " << centery << " .\033[0m\n";
+	std::cout << "\033[34mCentery = " << centery << " .\033[0m\n";*/
 }
 void Animate(int v)
 {
@@ -247,7 +274,14 @@ void Animate(int v)
 int main(int argc, char** argv)
 {
 	ge = new GameEngine();
-	base = new base_scene("scene2");
+	base = new gameScene("base","game_scene");
+	beach = new gameScene("beach", "game_scene");
+	forest = new gameScene("forest","game_scene");
+	mainmenu = new menuScene("main", "menu_scene");
+	ge->addgamescene(base);
+	ge->addgamescene(beach);
+	ge->addgamescene(forest);
+	ge->setCurrentScene(base);
 	b = new box(0.5, 0.5, 0.5);
 	b2 = new box(0.5, 0.5, 0.5);
 	b2->setposition(1., 0., 0.);
@@ -255,13 +289,16 @@ int main(int argc, char** argv)
 	b3->setposition(1., 0., 2.);
 	t = new tank(1.4, 0.8, 1.3);
 	t->setposition(1., 0., 2.);
+	ge->addObjecttocurrentscene(b);
+	ge->addObjecttocurrentscene(b2);
+	ge->addObjecttocurrentscene(b3);
 	/*tright = new tank(1.4, 0.8, 1.3);
 	tright->setposition(3., 0., 3.);
 	tbehind = new tank(1.4, 0.8, 1.3);
 	tbehind->setposition(1., 0., 6.);*/
 	glutInit(&argc, argv);                // GLUT initialisieren
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-	glutInitWindowSize(600, 600);         // Fenster-Konfiguration
+	glutInitWindowSize(Width, Height);         // Fenster-Konfiguration
 	glutCreateWindow("TANK");   // Fenster-Erzeugung
 	glutDisplayFunc(RenderScene);         // Zeichenfunktion bekannt machen
 	glutSpecialFunc(arrowfunc);

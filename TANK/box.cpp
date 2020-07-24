@@ -1,5 +1,8 @@
 #include "box.h"
-box::box(float x, float y, float z) : xLen(x),yLen(y),zLen(z) {
+box::box(float x, float y, float z) : GameObject()  {
+	xLen = x;
+	yLen = y; 
+	zLen = z; 
 	xoffset = 0; yoffset = 0; zoffset = 0;
 	iscolliding = false; 
 }

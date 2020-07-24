@@ -1,19 +1,24 @@
-#include "base_scene.h"
-base_scene::base_scene(std::string n) : name(n) {
-
+#include "gameScene.h"
+gameScene::gameScene(std::string n, std::string t) {
+	name = n; 
+	type = t; 
 }
-void base_scene::display() {
+void gameScene::display() {
 	glLoadIdentity();
 	glPopMatrix();
 	glPushMatrix();
 	drawground();
 	drawsky();
 	drawwalls();
+	for (GameObject* o : scene_objects) o->spawn();
 }
 
-void base_scene::drawwalls() {
+void gameScene::drawwalls() {
 
-	glBindTexture(GL_TEXTURE_2D, wall1);
+	if(name._Equal("base")) glBindTexture(GL_TEXTURE_2D, wall1);
+	else if (name._Equal("beach")) glBindTexture(GL_TEXTURE_2D, wall2);
+	else glBindTexture(GL_TEXTURE_2D, wall3);
+
 	//left 
 	glEnable(GL_TEXTURE_2D);
 	glBegin(GL_POLYGON);
@@ -56,9 +61,12 @@ void base_scene::drawwalls() {
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 }
-void base_scene::drawground() {
+void gameScene::drawground() {
 	//loading ground texture ; 
-	glBindTexture(GL_TEXTURE_2D, ground1);
+	if (name._Equal("base")) glBindTexture(GL_TEXTURE_2D, ground1);
+	else if (name._Equal("beach")) glBindTexture(GL_TEXTURE_2D, ground2);
+	else glBindTexture(GL_TEXTURE_2D, ground3);
+
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
@@ -73,10 +81,11 @@ void base_scene::drawground() {
 	glDisable(GL_TEXTURE_2D);
 
 }
-void base_scene::drawsky() {
+void gameScene::drawsky() {
 	//loading sky texture ; 
-	glBindTexture(GL_TEXTURE_2D, sky1);
-
+	if (name._Equal("base")) glBindTexture(GL_TEXTURE_2D, sky1);
+	else if (name._Equal("beach")) glBindTexture(GL_TEXTURE_2D, sky2);
+	else glBindTexture(GL_TEXTURE_2D, sky3);
 	glEnable(GL_TEXTURE_2D);
 	glBegin(GL_POLYGON);
 	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
