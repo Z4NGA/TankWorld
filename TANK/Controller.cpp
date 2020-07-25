@@ -21,14 +21,14 @@ void Controller::keyboardfunc(unsigned char key, int x, int y) {
 			case 'z':
 				//camZpos -= 0.035; //moving to the front means -z
 				//move toward the line of sight vector , means in direction of the person's sight
-				camZpos += 0.035 * centerz;
-				CamXpos += 0.035 * centerx;
+				camZpos += 0.035 * (centerz);//camera position must be included when calculating the direction vector
+				CamXpos += 0.035 * (centerx);//so the player walks in a straight line towards middle of screen(crosshair)
 				break;
 			case 's':
 				//camZpos += 0.035; // moving backward means +z
 				//move toward the line of sight vector , means in direction of the person's sight
-				camZpos -= 0.035 * centerz;
-				CamXpos -= 0.035 * centerx;
+				camZpos -= 0.035 * (centerz);
+				CamXpos -= 0.035 * (centerx);
 				break;
 			case 'q':
 				//CamXpos -= 0.035;
@@ -175,7 +175,7 @@ void Controller::noclick_motion(int x, int y) {
 		//centerx = float(x - 300.) / (float)xdebug.at(xdebug.size()-1);
 		centery = -float(y - (Height / 2.)) / 50.;
 		std::cout << "\033[34mCenterx = " << centerx << " .\033[0m\n";
-		std::cout << "\033[34mCentery = " << centery << " .\033[0m\n";
+		std::cout << "\033[34mCenterz = " << centerz << " .\033[0m\n";
 	}
 	else {
 		//mouse will be used to make hover effect over the buttons while menu_scene
