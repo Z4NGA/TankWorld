@@ -18,10 +18,12 @@ public:
 
 	Controller(GameEngine* p);
 	void noclick_motion(int x, int y);
+	void onclick_listner(int button, int state, int x, int y);
 	void arrowfunc(int key, int x, int y);
 	void keyboardfunc(unsigned char key, int x, int y);
 	void resetlook();
 	void setmenulook(); 
+	void selectbasedoncursor();
 	void setcampos(float x, float y, float z);
 };
 

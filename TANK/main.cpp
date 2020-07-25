@@ -27,24 +27,32 @@ box* b3;
 GameEngine* ge;
 Scene* mainmenu; 
 Scene* base;
-Scene* beach; 
+Scene* beach;
 Scene* forest;
-std::vector<GLuint> textures; 
+Scene* pause;
+Scene* death;
 std::vector<float> xdebug {50,150,300};
 std::vector<float> zdebug ;
-GLuint tex_2d,boxtx, redboxtx;
+GLuint tex_2d,boxtx, redboxtx; //box textures
+GLuint green, blue, grey, yellow; //tank textures
 GLuint sky1, ground1, wall1;//set of textures scene1 
 GLuint sky2, ground2, wall2;//set of textures scene2 
 GLuint sky3, ground3, wall3;//set of textures scene3 
-GLuint menubg, play, controls, credits, options, quit;//menu textures
+GLuint menubg, play, controls, credits, options, quit,cursor ,pausebg , cont ,deathbg,retry;//menu textures
 int h, w;
 float CamXpos=0., camYpos=1., camZpos=0.; //defines where the cam stands
 float centerx=0.7, centery= 0.9, centerz=0.;  //defines where the cam looks
 void loadtext() {
-	GLuint green = SOIL_load_OGL_texture("camogreen100.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
-	GLuint blue = SOIL_load_OGL_texture("camoblue100.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS);
-	GLuint grey = SOIL_load_OGL_texture("camogrey100.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS);
-	GLuint yellow = SOIL_load_OGL_texture("camoyellow100.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS);
+	/// <summary>
+	/// loading tank TEXTURES
+	/// </summary>
+	green = SOIL_load_OGL_texture("camogreen100.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	blue = SOIL_load_OGL_texture("camoblue100.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS);
+	grey = SOIL_load_OGL_texture("camogrey100.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS);
+	yellow = SOIL_load_OGL_texture("camoyellow100.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS);
+	/// <summary>
+	/// loading boxes TEXTURES
+	/// </summary>
 	boxtx = SOIL_load_OGL_texture("box.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS);
 	redboxtx = SOIL_load_OGL_texture("redbox.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS);
 	///
@@ -68,8 +76,12 @@ void loadtext() {
 	credits = SOIL_load_OGL_texture("credits.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	options = SOIL_load_OGL_texture("options.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	quit = SOIL_load_OGL_texture("quit.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	cursor = SOIL_load_OGL_texture("cursor.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	pausebg = SOIL_load_OGL_texture("pause.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	cont = SOIL_load_OGL_texture("continue.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	deathbg = SOIL_load_OGL_texture("deathbg.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	retry = SOIL_load_OGL_texture("retry.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 
-	textures.push_back(green); textures.push_back(blue); textures.push_back(grey);  textures.push_back(yellow);
 }
 
 
@@ -243,6 +255,9 @@ void arrowfunc(int key,int x,int y) {// handles the special keys such as arrows
 	*/
 
 }
+void onclick_listner(int button,int state ,int x ,int y) {
+	ge->controller->onclick_listner(button, state, x, y);
+}
 void noclick_motion(int x, int y) {
 	ge->controller->noclick_motion(x, y);
 	/*//gonna set higher sensitivity for now due to the small screen size
@@ -278,10 +293,16 @@ int main(int argc, char** argv)
 	beach = new gameScene("beach", "game_scene");
 	forest = new gameScene("forest","game_scene");
 	mainmenu = new menuScene("main", "menu_scene");
+	pause = new menuScene("pause", "menu_scene");
+	death = new menuScene("death","menu_scene");
 	ge->addgamescene(base);
 	ge->addgamescene(beach);
 	ge->addgamescene(forest);
+	ge->addmenuscene(mainmenu);
+	ge->addmenuscene(pause);
+	ge->addmenuscene(death);
 	ge->setCurrentScene(base);
+
 	b = new box(0.5, 0.5, 0.5);
 	b2 = new box(0.5, 0.5, 0.5);
 	b2->setposition(1., 0., 0.);
@@ -289,13 +310,12 @@ int main(int argc, char** argv)
 	b3->setposition(1., 0., 2.);
 	t = new tank(1.4, 0.8, 1.3);
 	t->setposition(1., 0., 2.);
+
 	ge->addObjecttocurrentscene(b);
 	ge->addObjecttocurrentscene(b2);
 	ge->addObjecttocurrentscene(b3);
-	/*tright = new tank(1.4, 0.8, 1.3);
-	tright->setposition(3., 0., 3.);
-	tbehind = new tank(1.4, 0.8, 1.3);
-	tbehind->setposition(1., 0., 6.);*/
+	ge->setCurrentScene(mainmenu);
+
 	glutInit(&argc, argv);                // GLUT initialisieren
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowSize(Width, Height);         // Fenster-Konfiguration
@@ -304,13 +324,12 @@ int main(int argc, char** argv)
 	glutSpecialFunc(arrowfunc);
 	glutKeyboardFunc(keyboardfunc);
 	glutPassiveMotionFunc(noclick_motion);
+	glutMouseFunc(onclick_listner);
 	// TimerCallback registrieren; wird nach 10 msec aufgerufen mit Parameter 0  
 	glutTimerFunc(10, Animate, value);
 	glutReshapeFunc(Reshape);
 	Init();
-	t->settextures(&textures);
-	/*tright->settextures(&textures);
-	tbehind->settextures(&textures);*/
+
 	glutMainLoop();
 	return 0;
 }

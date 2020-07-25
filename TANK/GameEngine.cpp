@@ -70,3 +70,27 @@ void GameEngine::changescene(int i) {
 	}
 	else std::cerr << "ERROR SCENES EMPTY !!!\n";
 }
+void GameEngine::startgame() {
+	if (game_scenes.empty()) std::cerr << "ERROR !! No game scenes are created !!\n";
+	else setCurrentScene(game_scenes.at(BASE_SCENE));
+}
+void GameEngine::onpause() {
+	if (menu_scenes.size() < 2) std::cerr << "ERROR !! Pause scene is missing !!\n";
+	else setCurrentScene(menu_scenes.at(PAUSE));
+}
+void GameEngine::backtogame() {
+	setCurrentScene(game_scenes.at(BASE_SCENE));
+}
+void GameEngine::endgame() {
+	if (menu_scenes.size() < 3) std::cerr << "ERROR !! End scene is missing !!\n";
+	else setCurrentScene(menu_scenes.at(END));
+}
+void GameEngine::displaycontrols() {
+
+}
+void GameEngine::displaycredits() {
+
+}
+void GameEngine::displayoptions() {
+
+}

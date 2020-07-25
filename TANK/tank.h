@@ -1,6 +1,13 @@
 #pragma once
 #include "cube.h"
 #include <iostream>
+#include "math.h"
+#include <vector>
+#include <GL/freeglut.h>
+
+#define M_PI acos(-1.)
+#define EXCEPTION_ACCESS_VIOLATION          STATUS_ACCESS_VIOLATION // doesnt seem to fix it using extern variables for now 
+extern GLuint green, blue, grey, yellow;
 class tank
 {
 public:
@@ -10,11 +17,9 @@ public:
 	float tank_x_offset, tank_y_offset, tank_z_offset; //represnts how much the tank has to travel based on previous offset and dir
 	//just indicates the current position of the tank
 	float tankoffset, tankangle, topangle, cannonangle;
-	std::vector<GLuint>* textures; 
 	tank();
 	tank(float x, float y, float z);
 	~tank();
-	void settextures(std::vector<GLuint>* t);
 	void drawcore();
 	void drawtop();
 	void drawcannonpart();

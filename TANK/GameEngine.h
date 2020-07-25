@@ -6,7 +6,7 @@
 #include <vector>
 #define MAIN_MENU 0
 #define PAUSE 1
-#define HELP 2 
+#define END 2 
 #define BASE_SCENE 0
 #define BEACH_SCENE 1 
 #define FOREST_SCENE 2 
@@ -31,5 +31,13 @@ public:
 	void drawCurrentScene();
 	void addObjecttocurrentscene(GameObject* obj);
 	void changescene(int i); 
+	void startgame();
+	void onpause(); 
+	void endgame();
+	void displaycontrols();
+	void displaycredits();
+	void displayoptions();
+	void backtogame();
+
 };
 

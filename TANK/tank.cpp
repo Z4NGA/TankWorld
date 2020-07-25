@@ -1,10 +1,4 @@
 #include "tank.h"
-#include "math.h"
-#include <vector>
-#include <GL/freeglut.h>
-
-#define M_PI acos(-1.)
-#define EXCEPTION_ACCESS_VIOLATION          STATUS_ACCESS_VIOLATION // doesnt seem to fix it using extern variables for now 
 
 tank::tank(float x, float y, float z):xLen(x),yLen(y),zLen(z),tankoffset(0),tankangle(0),topangle(0),cannonangle(0) {
 	dirx=1, diry=0, dirz = 0;
@@ -12,14 +6,10 @@ tank::tank(float x, float y, float z):xLen(x),yLen(y),zLen(z),tankoffset(0),tank
 	tank_y_offset = 0;
 	tank_z_offset = 0;
 	i_xlen = x; i_ylen = y; i_zlen = z;
-	textures = nullptr;
 }
 tank::~tank() {
 //freeing the graphic memory from the loaded texture
 
-}
-void tank::settextures(std::vector<GLuint>* t) {
-	textures = t;
 }
 void tank::reshape() {
 	float extrasize = 0.1 * tank_x_offset+0.1*tank_y_offset + 0.1*tank_z_offset;
@@ -41,8 +31,8 @@ void tank::movetank(float offset) {
 	
 }
 void tank::output_specs() {
-	std::cout << "tank_x_offset : " << tank_x_offset << " , tank_x_offset : " << tank_y_offset << " , tank_z_offset : " 
-		<< tank_z_offset <<"\ntankAngle : "<<tankangle<<" , dirx : "<<dirx<<" , dirz : "<<dirz << std::endl;
+	//std::cout << "tank_x_offset : " << tank_x_offset << " , tank_x_offset : " << tank_y_offset << " , tank_z_offset : " 
+	//	<< tank_z_offset <<"\ntankAngle : "<<tankangle<<" , dirx : "<<dirx<<" , dirz : "<<dirz << std::endl;
 	
 }
 void tank::turntank(float angle) {
@@ -94,7 +84,7 @@ void tank::spawn(int pos) {
 	drawcannonpart();
 }
 void tank::drawcore() {
-	cube(0.75 * xLen, 0.2*yLen, zLen * 0.6,textures->at(0));
+	cube(0.75 * xLen, 0.2*yLen, zLen * 0.6,green);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////		DRAWs THE TOP PART WITHOUT THE CANNON	/////////////////////////////////////
@@ -104,7 +94,7 @@ void tank::drawtop() {
 	float tempx= 0.8 * xLen, tempy= 0.28 * yLen, tempz = 0.5 * zLen;
 	//////////////////////////////////////////////top side///////////////////////////////////////////////////////////
 	//1
-	glBindTexture(GL_TEXTURE_2D, textures->at(0));
+	glBindTexture(GL_TEXTURE_2D, green);
 	glEnable(GL_TEXTURE_2D);
 	glColor4f(1., 1., 1., 1.);
 	glBegin(GL_QUADS);
@@ -458,7 +448,7 @@ void tank::drawcannonpart() {//trying a  second way to draw cylinders laggy
 //////////////////////////////		DRAWs THE BOT PART WITHOUT THE WHEELS	/////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void tank::drawbot() {
-	cube(xLen, 0.4 * yLen, zLen*0.6, textures->at(1));
+	cube(xLen, 0.4 * yLen, zLen*0.6, blue);
 	
 	
 }
@@ -628,60 +618,60 @@ void tank::drawchain(float xoffset,int pos) {
 		for (float i = -0.5 * tempx; i < tempx * 0.5; i += 0.05 * tempx)
 		{
 			if (!analogue) {
-				cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1)); analogue = !analogue;
+				cube(0.05 * tempx, 0.15 * tempy, tempz , blue); analogue = !analogue;
 			}
 			else {
-				cube(0.05 * tempx, 0.25 * tempy, tempz , textures->at(1)); analogue = !analogue;
+				cube(0.05 * tempx, 0.25 * tempy, tempz , blue); analogue = !analogue;
 			}
 			glTranslatef(0.05 * tempx, 0., 0.);
 		}
 		//right vertical section
 		glTranslatef(0., 0., 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(0.02 * tempx, -0.15 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(0.01 * tempx, -0.15 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(-0.01 * tempx, -0.12 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(-0.02 * tempx, -0.12 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(-0.02 * tempx, -0.12 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(-0.02 * tempx, -0.11 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(-0.03 * tempx, -0.12 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(-0.03 * tempx, -0.12 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 
 		//bottom horizantal section
 		for (float i = 0.3 * tempx; i > -tempx * 0.5; i -= 0.05 * tempx)
 		{
 			if (!analogue) {
-				cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1)); analogue = !analogue;
+				cube(0.05 * tempx, 0.15 * tempy, tempz , blue); analogue = !analogue;
 			}
 			else {
-				cube(0.05 * tempx, 0.25 * tempy, tempz , textures->at(1)); analogue = !analogue;
+				cube(0.05 * tempx, 0.25 * tempy, tempz , blue); analogue = !analogue;
 			}
 			glTranslatef(-0.05 * tempx, 0., 0.);
 		}
 
 		//left vertical sction
 		glTranslatef(0., 0.1 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(0., 0.1 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(-0.05 * tempx, 0.1 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(-0.05 * tempx, 0.1 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(-0.05, 0.15 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(0.0, 0.15 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(0.0, 0.15 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 	}
 	else if (pos == 2) {
 		//top horizantal section
@@ -689,60 +679,60 @@ void tank::drawchain(float xoffset,int pos) {
 		for (float i = -0.5 * tempx; i < tempx * 0.5; i += 0.05 * tempx)
 		{
 			if (!analogue) {
-				cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1)); analogue = !analogue;
+				cube(0.05 * tempx, 0.15 * tempy, tempz , blue); analogue = !analogue;
 			}
 			else {
-				cube(0.05 * tempx, 0.25 * tempy, tempz , textures->at(1)); analogue = !analogue;
+				cube(0.05 * tempx, 0.25 * tempy, tempz , blue); analogue = !analogue;
 			}
 			glTranslatef(0.05 * tempx, 0., 0.);
 		}
 		//right vertical section
 		glTranslatef(0., 0., 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(0.02 * tempx, -0.15 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(0.01 * tempx, -0.15 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(-0.01 * tempx, -0.12 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(-0.02 * tempx, -0.12 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(-0.02 * tempx, -0.12 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(-0.02 * tempx, -0.11 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(-0.03 * tempx, -0.12 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(-0.03 * tempx, -0.12 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 
 		//bottom horizantal section
 		for (float i = 0.3 * tempx; i > -tempx * 0.5; i -= 0.05 * tempx)
 		{
 			if (!analogue) {
-				cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1)); analogue = !analogue;
+				cube(0.05 * tempx, 0.15 * tempy, tempz , blue); analogue = !analogue;
 			}
 			else {
-				cube(0.05 * tempx, 0.25 * tempy, tempz , textures->at(1)); analogue = !analogue;
+				cube(0.05 * tempx, 0.25 * tempy, tempz , blue); analogue = !analogue;
 			}
 			glTranslatef(-0.05 * tempx, 0., 0.);
 		}
 
 		//left vertical sction
 		glTranslatef(0., 0.1 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(0., 0.1 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(-0.05 * tempx, 0.1 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(-0.05 * tempx, 0.1 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(-0.05, 0.15 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(0.0, 0.15 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 		glTranslatef(0.0, 0.15 * tempy, 0.);
-		cube(0.05 * tempx, 0.15 * tempy, tempz , textures->at(1));
+		cube(0.05 * tempx, 0.15 * tempy, tempz , blue);
 	}
 	else {
 
