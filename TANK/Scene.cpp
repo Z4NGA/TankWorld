@@ -8,5 +8,3 @@ void Scene::addObject(GameObject* obj) {
 void Scene::setControllledObject(GameObject* obj) {
 	controlled_object = obj;
 }
-
-

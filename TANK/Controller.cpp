@@ -207,6 +207,8 @@ void Controller::resetlook() {
 	gluLookAt(CamXpos, camYpos, camZpos, centerx + CamXpos, centery, centerz + camZpos - 1., 0., 1., 0.);//set the lookAt
 	//look behind on the z axis so the left side is -x , right is +x , front -z , back is +z
 	glPushMatrix();
+	displaydetectionrange();
+
 }
 void Controller::setmenulook() {
 	// sets the look to suit a menu_scene
@@ -257,4 +259,27 @@ void Controller::selectbasedoncursor() {
 			break;
 		}
 	}
+}
+void Controller::displaydetectionrange() {
+	float radiuswidth = 0.1;
+	glBegin(GL_LINE_LOOP);
+	glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
+	for (float i = 0; i < 2*M_PI; i+=0.005)
+	{
+		float x = detectionrange * cos(i);
+		float z = detectionrange * sin(i);
+		glVertex3f(x+CamXpos, 0.1, z+camZpos);
+		x = (detectionrange - radiuswidth) * cos(i);
+		z = (detectionrange - radiuswidth) * sin(i);
+		glVertex3f(x+CamXpos, 0.1, z+camZpos);
+	}
+	glEnd();
+}
+bool Controller::isindetectionrange(GameObject*  obj) {
+	float expectedcenterdistance = detectionrange + (obj->xLen*sqrt(2)/2.); // will be calculated as the radius + diagonal
+	float currentcenterdistance  = sqrt(pow((obj->xoffset - CamXpos), 2) + pow((obj->yoffset - camYpos), 2) + pow((obj->zoffset - camZpos), 2) );
+	bool result = (currentcenterdistance < expectedcenterdistance); 
+	if (currentcenterdistance < expectedcenterdistance) std::cout << "object " << obj->type << " is in range of the player !! \n";
+	obj->inrange = result; 
+	return result;
 }

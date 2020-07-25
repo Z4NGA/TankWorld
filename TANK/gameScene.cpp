@@ -97,3 +97,15 @@ void gameScene::drawsky() {
 	glDisable(GL_TEXTURE_2D);
 
 }
+void gameScene::displayinrangeui() {
+	glBindTexture(GL_TEXTURE_2D, useobject);
+	glEnable(GL_TEXTURE_2D);
+		glBegin(GL_POLYGON);
+			glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+			glTexCoord2d(0., 0.); glVertex3f(-0.5, 0.7 - (float)(1.4 / 11), -1.);
+			glTexCoord2d(0., 1.); glVertex3f(-0.5, 0.7, -1.);
+			glTexCoord2d(1., 1.); glVertex3f(0.5, 0.7, -1.);
+			glTexCoord2d(1., 0.); glVertex3f(0.5, 0.7 - (float)(1.4 / 11), -1.);
+		glEnd();
+	glDisable(GL_TEXTURE_2D);
+}

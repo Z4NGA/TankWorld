@@ -15,5 +15,6 @@ public:
 	virtual void incrementcursorposition(){}
 	virtual void decrementcursorposition() {}
 	virtual void changecursorposition(int position) {}
+	virtual void displayinrangeui(){}
 };
 

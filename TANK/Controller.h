@@ -13,6 +13,7 @@ class Controller
 public:
 	float CamXpos , camYpos , camZpos ; //defines where the cam stands
 	float centerx , centery , centerz ; //defines where the cam looks
+	float detectionrange = 1.; // will allow the use of different objects
 	GameEngine* engineincontrol; 
 	GameObject* controlled_object; 
 
@@ -25,5 +26,7 @@ public:
 	void setmenulook(); 
 	void selectbasedoncursor();
 	void setcampos(float x, float y, float z);
+	void displaydetectionrange(); 
+	bool isindetectionrange(GameObject* obj);
 };
 

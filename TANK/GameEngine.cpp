@@ -41,7 +41,19 @@ bool GameEngine::collisiondetection() {
 void GameEngine::drawCurrentScene() {
 	if (current_scene != nullptr)
 	{
-		if (current_scene->type._Equal("game_scene")) controller->resetlook();
+		if (current_scene->type._Equal("game_scene")) {
+			controller->resetlook();
+			for (GameObject* o : current_scene->scene_objects) {
+				if (controller->isindetectionrange(o)) {
+					objectinrange = o;
+					controller->setmenulook();
+					current_scene->displayinrangeui(); 
+					controller->resetlook();
+					break;
+				}
+			}
+		}
+
 		else controller->setmenulook();
 		current_scene->display();
 	}

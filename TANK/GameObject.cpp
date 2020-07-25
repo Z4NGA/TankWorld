@@ -5,7 +5,7 @@ GameObject::GameObject() {
 GameObject::GameObject(float x, float y, float z) : xLen(x), yLen(y), zLen(z) {
 	xoffset = 0; yoffset = 0; zoffset = 0; 
 	type = "undefined";
-
+	inrange = false;
 }
 std::vector<float> GameObject::getborder() {
 	//left,right,top ,bot , front,back

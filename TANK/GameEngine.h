@@ -18,6 +18,7 @@ public:
 	std::vector<Scene*> game_scenes; 
 	std::vector<Scene*> menu_scenes;
 	GameObject* controlled_object;
+	GameObject* objectinrange; 
 	std::vector<GameObject*> scene_objects; 
 	std::string status; 
 	Controller* controller; 

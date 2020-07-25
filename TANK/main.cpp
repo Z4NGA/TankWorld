@@ -15,7 +15,7 @@
 #include "menuScene.h"
 #include <math.h>
 #define M_PI acos(-1.)
-#define all_textures 0.26
+#define all_textures 0.27
 
 int value = 0;
 int loadedtextures = 0;
@@ -42,6 +42,7 @@ GLuint sky1, ground1, wall1;//set of textures scene1
 GLuint sky2, ground2, wall2;//set of textures scene2 
 GLuint sky3, ground3, wall3;//set of textures scene3 
 GLuint menubg, play, controls, credits, options, quit,cursor ,pausebg , cont ,deathbg,retry;//menu textures
+GLuint useobject; //game ui textures
 int h, w;
 float CamXpos=0., camYpos=1., camZpos=0.; //defines where the cam stands
 float centerx=0.7, centery= 0.9, centerz=0.;  //defines where the cam looks
@@ -111,6 +112,11 @@ void loadtext() {
 	deathbg = SOIL_load_OGL_texture("deathbg.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
 	retry = SOIL_load_OGL_texture("retry.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	/// <summary>
+	///  LOADING GAME UI TEXTURES
+	/// </summary>
+	useobject = SOIL_load_OGL_texture("useobject.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
 	std::cout << "\033[0m";
 }

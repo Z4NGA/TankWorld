@@ -7,6 +7,7 @@
 extern GLuint ground1, sky1, wall1;
 extern GLuint ground2, sky2, wall2;
 extern GLuint ground3, sky3, wall3;
+extern GLuint useobject;
 class gameScene :public Scene
 {
 public: 
@@ -17,6 +18,6 @@ public:
 	void drawsky();
 	void drawground();
 	void drawwalls();
-	
+	void displayinrangeui();
 };
 

@@ -5,6 +5,8 @@ box::box(float x, float y, float z) : GameObject()  {
 	zLen = z; 
 	xoffset = 0; yoffset = 0; zoffset = 0;
 	iscolliding = false; 
+	type = "box";
+	inrange = false;
 }
 void box::spawn() {
 	glLoadIdentity(); 
@@ -38,7 +40,7 @@ std::vector<float> box::getborder() {
 }
 void box::drawbox() {
 	float texmax = 1.;
-	if(iscolliding) glBindTexture(GL_TEXTURE_2D, redboxtx);
+	if(inrange) glBindTexture(GL_TEXTURE_2D, redboxtx);
 	else 	glBindTexture(GL_TEXTURE_2D, boxtx);
 
 	glColor4f(1., 1., 1., 1.);

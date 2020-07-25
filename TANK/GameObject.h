@@ -6,6 +6,7 @@ class GameObject
 public:
 	float xLen, yLen, zLen; 
 	float xoffset, yoffset, zoffset;
+	bool inrange;
 	std::string type; 
 	GameObject();
 	GameObject(float x,float y,float z); 
