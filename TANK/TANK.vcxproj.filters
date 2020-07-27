@@ -51,6 +51,12 @@
     <ClCompile Include="menuScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="controleStation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tank.h">
@@ -81,6 +87,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="menuScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="controleStation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

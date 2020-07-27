@@ -277,7 +277,7 @@ void Controller::displaydetectionrange() {
 }
 bool Controller::isindetectionrange(GameObject*  obj) {
 	float expectedcenterdistance = detectionrange + (obj->xLen*sqrt(2)/2.); // will be calculated as the radius + diagonal
-	float currentcenterdistance  = sqrt(pow((obj->xoffset - CamXpos), 2) + pow((obj->yoffset - camYpos), 2) + pow((obj->zoffset - camZpos), 2) );
+	float currentcenterdistance  = sqrt(pow((obj->xoffset - CamXpos), 2) + /*pow((obj->yoffset - camYpos), 2) y offset will be ignored for now*/+ pow((obj->zoffset - camZpos), 2) );
 	bool result = (currentcenterdistance < expectedcenterdistance); 
 	if (currentcenterdistance < expectedcenterdistance) std::cout << "object " << obj->type << " is in range of the player !! \n";
 	obj->inrange = result; 

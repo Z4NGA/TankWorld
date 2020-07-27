@@ -13,6 +13,8 @@
 #include "Scene.h"
 #include "gameScene.h"
 #include "menuScene.h"
+#include "Tent.h"
+#include "controleStation.h"
 #include <math.h>
 #define M_PI acos(-1.)
 #define all_textures 0.27
@@ -26,6 +28,8 @@ tank* t;
 box* b;
 box* b2;
 box* b3;
+Tent* tent;
+controleStation* cs;
 //base_scene* base; 
 GameEngine* ge;
 Scene* mainmenu; 
@@ -339,7 +343,7 @@ int main(int argc, char** argv)
 	ge->addmenuscene(pause);
 	ge->addmenuscene(death);
 	ge->setCurrentScene(base);
-
+	//creating gameobjects
 	b = new box(0.5, 0.5, 0.5);
 	b2 = new box(0.5, 0.5, 0.5);
 	b2->setposition(1., 0., 0.);
@@ -347,10 +351,16 @@ int main(int argc, char** argv)
 	b3->setposition(1., 0., 2.);
 	t = new tank(1.4, 0.8, 1.3);
 	t->setposition(1., 0., 2.);
-
+	tent = new Tent(3.4, 2.2, 3.6);
+	tent->setposition(-4., 0., -2.);
+	cs = new controleStation(3.0, 2.0, 1.);
+	cs->setposition(4.,0.,-2.);
+	//adding gameobjects
 	ge->addObjecttocurrentscene(b);
 	ge->addObjecttocurrentscene(b2);
 	ge->addObjecttocurrentscene(b3);
+	ge->addObjecttocurrentscene(tent);
+	ge->addObjecttocurrentscene(cs);
 	ge->setCurrentScene(mainmenu);
 
 	glutInit(&argc, argv);                // GLUT initialisieren

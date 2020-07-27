@@ -139,6 +139,7 @@
     <ClCompile Include="base_scene.cpp" />
     <ClCompile Include="box.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="controleStation.cpp" />
     <ClCompile Include="cube.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -147,12 +148,14 @@
     <ClCompile Include="menuScene.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="tank.cpp" />
+    <ClCompile Include="Tent.cpp" />
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base_scene.h" />
     <ClInclude Include="box.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="controleStation.h" />
     <ClInclude Include="cube.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
@@ -160,6 +163,7 @@
     <ClInclude Include="menuScene.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="tank.h" />
+    <ClInclude Include="Tent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
