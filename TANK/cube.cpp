@@ -144,7 +144,7 @@ cube::cube(float xLen, float yLen, float zLen, GLuint tx) {
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 }
-void cube(float xLen, float yLen, float zLen) {
+cube::cube(float xLen, float yLen, float zLen) {
 	glBegin(GL_POLYGON);   //Vorderseite
 	glColor4f(1.0f, 0.0f, 0.0f, 1.0f);	//ROT
 	glVertex3f(-xLen / 2.0f, -yLen / 2.0f, +zLen / 2.0f);

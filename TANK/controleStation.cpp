@@ -83,103 +83,114 @@ void controleStation::drawminigate() {
 	float tempx = xLen/20., tempy = 0.3 * yLen, tempz = zLen*0.3;
 	float shade = 0.5;
 	//front consisting from 3 parts
-	glBegin(GL_POLYGON);
-		glColor4f(shade, shade, shade, 1.);
-		glVertex3f(-tempx / 2., -tempy / 2., tempz / 2.);
-		glVertex3f(-tempx / 2., tempy / 2., tempz / 2.);
-		glVertex3f(tempy/2., tempy / 2., tempz / 2.);
-		glVertex3f(tempy/2., -tempy / 2., tempz / 2.);
-	glEnd();
-	//back consisting from 3 parts
-	glBegin(GL_POLYGON);
-		glColor4f(shade, shade, shade, 1.);
-		glVertex3f(-tempx / 2., -tempy / 2., -tempz / 2.);
-		glVertex3f(-tempx / 2., tempy / 2., -tempz / 2.);
-		glVertex3f(tempy/2., tempy / 2., -tempz / 2.);
-		glVertex3f(tempy/2., -tempy / 2.,-tempz / 2.);
-	glEnd();
-	//left consisting from 3 parts
-	glBegin(GL_POLYGON);
-		glColor4f(shade, shade, shade, 1.);
-		glVertex3f(-tempx / 2., -tempy / 2., -tempz / 2.);
-		glVertex3f(-tempx / 2., tempy / 2., -tempz / 2.);
-		glVertex3f(-tempy/2., tempy / 2., tempz / 2.);
-		glVertex3f(-tempy/2., -tempy / 2., tempz / 2.);
-	glEnd();
-	//right consisting from 3 parts
-	glBegin(GL_POLYGON);
-		glColor4f(shade, shade, shade, 1.);
-		glVertex3f(tempx / 2., -tempy / 2., -tempz / 2.);
-		glVertex3f(tempx / 2., tempy / 2., -tempz / 2.);
-		glVertex3f(tempy/2., tempy / 2., tempz / 2.);
-		glVertex3f(tempy/2., -tempy / 2., tempz / 2.);
-	glEnd();
-	//top consisting from 3 parts
-	glBegin(GL_POLYGON);
-		glColor4f(shade, shade, shade, 1.);
-		glVertex3f(-tempx / 2., tempy / 2., -tempz / 2.);
-		glVertex3f(-tempx / 2., tempy / 2., tempz / 2.);
-		glVertex3f(tempy/2., tempy / 2., tempz / 2.);
-		glVertex3f(tempy/2., tempy / 2., -tempz / 2.);
-	glEnd();
-	//bot consisting from 3 parts
-	glBegin(GL_POLYGON);
-		glColor4f(shade, shade, shade, 1.);
-		glVertex3f(-tempx / 2., -tempy / 2., -tempz / 2.);
-		glVertex3f(-tempx / 2., -tempy / 2., tempz / 2.);
-		glVertex3f(tempy/2., -tempy / 2., tempz / 2.);
-		glVertex3f(tempy/2., -tempy / 2., -tempz / 2.);
-	glEnd();
+	cube(tempx, tempy, tempz);
 }
 void controleStation::drawlargegate() {
-	float tempx = xLen, tempy =yLen, tempz = zLen*0.2;
+	float tempx = xLen*0.9, tempy =yLen, tempz = zLen*0.1;
 	float shade = 0.7;
-	//front consisting from 3 parts
-	glBegin(GL_POLYGON);
-		glColor4f(shade, shade, shade, 1.);
-		glVertex3f(-tempx / 2., -tempy / 2., tempz / 2.);
-		glVertex3f(-tempx / 2., tempy / 2., tempz / 2.);
-		glVertex3f(tempy/2., tempy / 2., tempz / 2.);
-		glVertex3f(tempy/2., -tempy / 2., tempz / 2.);
-	glEnd();
-	//back consisting from 3 parts
-	glBegin(GL_POLYGON);
-		glColor4f(shade, shade, shade, 1.);
-		glVertex3f(-tempx / 2., -tempy / 2., -tempz / 2.);
-		glVertex3f(-tempx / 2., tempy / 2., -tempz / 2.);
-		glVertex3f(tempy/2., tempy / 2., -tempz / 2.);
-		glVertex3f(tempy/2., -tempy / 2.,-tempz / 2.);
-	glEnd();
-	//left consisting from 3 parts
-	glBegin(GL_POLYGON);
-		glColor4f(shade, shade, shade, 1.);
-		glVertex3f(-tempx / 2., -tempy / 2., -tempz / 2.);
-		glVertex3f(-tempx / 2., tempy / 2., -tempz / 2.);
-		glVertex3f(-tempy/2., tempy / 2., tempz / 2.);
-		glVertex3f(-tempy/2., -tempy / 2., tempz / 2.);
-	glEnd();
-	//right consisting from 3 parts
-	glBegin(GL_POLYGON);
-		glColor4f(shade, shade, shade, 1.);
-		glVertex3f(tempx / 2., -tempy / 2., -tempz / 2.);
-		glVertex3f(tempx / 2., tempy / 2., -tempz / 2.);
-		glVertex3f(tempy/2., tempy / 2., tempz / 2.);
-		glVertex3f(tempy/2., -tempy / 2., tempz / 2.);
-	glEnd();
-	//top consisting from 3 parts
-	glBegin(GL_POLYGON);
-		glColor4f(shade, shade, shade, 1.);
-		glVertex3f(-tempx / 2., tempy / 2., -tempz / 2.);
-		glVertex3f(-tempx / 2., tempy / 2., tempz / 2.);
-		glVertex3f(tempy/2., tempy / 2., tempz / 2.);
-		glVertex3f(tempy/2., tempy / 2., -tempz / 2.);
-	glEnd();
-	//bot consisting from 3 parts
-	glBegin(GL_POLYGON);
-		glColor4f(shade, shade, shade, 1.);
-		glVertex3f(-tempx / 2., -tempy / 2., -tempz / 2.);
-		glVertex3f(-tempx / 2., -tempy / 2., tempz / 2.);
-		glVertex3f(tempy/2., -tempy / 2., tempz / 2.);
-		glVertex3f(tempy/2., -tempy / 2., -tempz / 2.);
-	glEnd();
+
+	//shrinken tempx
+	//draw the grid
+	glLineWidth(3.),
+	glEnable(GL_LINE_SMOOTH);float j = tempy/2.;
+	glColor4f(0.,0.,0.,1.);
+	for (float  i = -tempx/2.; i <tempx/2.; i+=tempx/30.)
+	{
+		j -= tempy / 30.;
+		glBegin(GL_LINES);
+			glVertex3f(-tempx / 2., j, tempz / 2.);
+			glVertex3f(i, tempy / 2., tempz / 2.);
+		glEnd();
+		glBegin(GL_LINES);
+			glVertex3f(tempx / 2., -j, tempz / 2.);
+			glVertex3f(-i, -tempy / 2., tempz / 2.);
+		glEnd();
+		glBegin(GL_LINES);
+			glVertex3f(tempx / 2., j, tempz / 2.);
+			glVertex3f(-i, tempy / 2., tempz / 2.);
+		glEnd();
+		glBegin(GL_LINES);
+			glVertex3f(-tempx / 2., -j, tempz / 2.);
+			glVertex3f(i, -tempy / 2., tempz / 2.);
+		glEnd();
+		// -tempz
+		tempz = -tempz;//invert
+		glBegin(GL_LINES);
+			glVertex3f(-tempx / 2., j, tempz / 2.);
+			glVertex3f(i, tempy / 2., tempz / 2.);
+		glEnd();
+		glBegin(GL_LINES);
+			glVertex3f(tempx / 2., -j, tempz / 2.);
+			glVertex3f(-i, -tempy / 2., tempz / 2.);
+		glEnd();
+		glBegin(GL_LINES);
+			glVertex3f(tempx / 2., j, tempz / 2.);
+			glVertex3f(-i, tempy / 2., tempz / 2.);
+		glEnd();
+		glBegin(GL_LINES);
+			glVertex3f(-tempx / 2., -j, tempz / 2.);
+			glVertex3f(i, -tempy / 2., tempz / 2.);
+		glEnd();
+		tempz = -tempz;//reset
+	}
+	glDisable(GL_LINE_SMOOTH);
+	//draw gate left and right poles 
+	tempx = xLen;
+	glTranslatef(-tempx * 0.47, tempy/2., 0.);
+	glRotatef(90,1., 0., 0.);
+	gluCylinder(gluNewQuadric(), tempx / 40., tempx / 40., tempy, 10, 10);
+	glRotatef(-90, 1., 0., 0.);
+	glTranslatef(tempx * 0.94, 0., 0.);
+	glRotatef(90, 1., 0., 0.);
+	gluCylinder(gluNewQuadric(), tempx / 40., tempx / 40., tempy, 10, 10);
+	glRotatef(-90, 1., 0., 0.);
+	glTranslatef(-tempx * 0.47, -tempy / 2., 0.); //resetting position
+	////front consisting from 3 parts
+	//glBegin(GL_POLYGON);
+	//	glColor4f(shade, shade, shade, 1.);
+	//	glVertex3f(-tempx / 2., -tempy / 2., tempz / 2.);
+	//	glVertex3f(-tempx / 2., tempy / 2., tempz / 2.);
+	//	glVertex3f(tempy/2., tempy / 2., tempz / 2.);
+	//	glVertex3f(tempy/2., -tempy / 2., tempz / 2.);
+	//glEnd();
+	////back consisting from 3 parts
+	//glBegin(GL_POLYGON);
+	//	glColor4f(shade, shade, shade, 1.);
+	//	glVertex3f(-tempx / 2., -tempy / 2., -tempz / 2.);
+	//	glVertex3f(-tempx / 2., tempy / 2., -tempz / 2.);
+	//	glVertex3f(tempy/2., tempy / 2., -tempz / 2.);
+	//	glVertex3f(tempy/2., -tempy / 2.,-tempz / 2.);
+	//glEnd();
+	////left consisting from 3 parts
+	//glBegin(GL_POLYGON);
+	//	glColor4f(shade, shade, shade, 1.);
+	//	glVertex3f(-tempx / 2., -tempy / 2., -tempz / 2.);
+	//	glVertex3f(-tempx / 2., tempy / 2., -tempz / 2.);
+	//	glVertex3f(-tempy/2., tempy / 2., tempz / 2.);
+	//	glVertex3f(-tempy/2., -tempy / 2., tempz / 2.);
+	//glEnd();
+	////right consisting from 3 parts
+	//glBegin(GL_POLYGON);
+	//	glColor4f(shade, shade, shade, 1.);
+	//	glVertex3f(tempx / 2., -tempy / 2., -tempz / 2.);
+	//	glVertex3f(tempx / 2., tempy / 2., -tempz / 2.);
+	//	glVertex3f(tempy/2., tempy / 2., tempz / 2.);
+	//	glVertex3f(tempy/2., -tempy / 2., tempz / 2.);
+	//glEnd();
+	////top consisting from 3 parts
+	//glBegin(GL_POLYGON);
+	//	glColor4f(shade, shade, shade, 1.);
+	//	glVertex3f(-tempx / 2., tempy / 2., -tempz / 2.);
+	//	glVertex3f(-tempx / 2., tempy / 2., tempz / 2.);
+	//	glVertex3f(tempy/2., tempy / 2., tempz / 2.);
+	//	glVertex3f(tempy/2., tempy / 2., -tempz / 2.);
+	//glEnd();
+	////bot consisting from 3 parts
+	//glBegin(GL_POLYGON);
+	//	glColor4f(shade, shade, shade, 1.);
+	//	glVertex3f(-tempx / 2., -tempy / 2., -tempz / 2.);
+	//	glVertex3f(-tempx / 2., -tempy / 2., tempz / 2.);
+	//	glVertex3f(tempy/2., -tempy / 2., tempz / 2.);
+	//	glVertex3f(tempy/2., -tempy / 2., -tempz / 2.);
+	//glEnd();
 }

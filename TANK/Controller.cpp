@@ -119,6 +119,7 @@ void Controller::arrowfunc(int key, int x, int y) {// handles the special keys s
 			*/break;
 		case GLUT_KEY_DOWN:
 			std::cout << " ARROW_DOWN\n";
+			camYpos -= 0.035;
 			/*t->tiltcannon(-1);
 			b->movez(-0.015);
 			b->iscolliding = iscolliding(b->getborder(), b2->getborder());
@@ -137,7 +138,7 @@ void Controller::arrowfunc(int key, int x, int y) {// handles the special keys s
 			*/break;
 		case GLUT_KEY_CTRL_L:
 			std::cout << "CTRL Left \n";
-			camYpos -= 0.035;
+		
 			//can be upgraded to go left right forward back according to the direction vector
 			break;
 		}

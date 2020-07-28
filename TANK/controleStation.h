@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include <GL/freeglut.h>
+#include "cube.h"
 class controleStation : public GameObject
 {
 public :
