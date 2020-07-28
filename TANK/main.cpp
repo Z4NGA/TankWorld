@@ -17,7 +17,9 @@
 #include "controleStation.h"
 #include <math.h>
 #define M_PI acos(-1.)
-#define all_textures 0.27
+#define all_textures 0.30
+
+//textures should be front / right / back / left /top /bot
 
 int value = 0;
 int loadedtextures = 0;
@@ -47,6 +49,7 @@ GLuint sky2, ground2, wall2;//set of textures scene2
 GLuint sky3, ground3, wall3;//set of textures scene3 
 GLuint menubg, play, controls, credits, options, quit,cursor ,pausebg , cont ,deathbg,retry;//menu textures
 GLuint useobject; //game ui textures
+GLuint gate_frontback,gatewall, gatebar_texture; //controller textures
 int h, w;
 float CamXpos=0., camYpos=1., camZpos=0.; //defines where the cam stands
 float centerx=0.7, centery= 0.9, centerz=0.;  //defines where the cam looks
@@ -122,6 +125,16 @@ void loadtext() {
 	/// </summary>
 	useobject = SOIL_load_OGL_texture("useobject.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	/// <summary>
+	/// LOADING GATE CONTROLLER TEXTURES
+	/// </summary>
+	gate_frontback = SOIL_load_OGL_texture("gate_texture.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	gatebar_texture = SOIL_load_OGL_texture("gatebar_texture.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	gatewall = SOIL_load_OGL_texture("gatewall.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+
 	std::cout << "\033[0m";
 }
 

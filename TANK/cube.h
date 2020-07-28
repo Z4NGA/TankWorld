@@ -9,5 +9,5 @@ public:
 	cube(float fSeitenL);
 	cube(float xLen, float yLen, float zLen);
 	cube(float xLen, float yLen, float zLen, GLuint tx);
-
+	cube(float xLen, float yLen, float zLen, std::vector<GLuint> txs);
 };
