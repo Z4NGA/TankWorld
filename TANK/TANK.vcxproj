@@ -136,6 +136,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Aircraft.cpp" />
     <ClCompile Include="base_scene.cpp" />
     <ClCompile Include="box.cpp" />
     <ClCompile Include="Controller.cpp" />
@@ -152,6 +153,7 @@
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Aircraft.h" />
     <ClInclude Include="base_scene.h" />
     <ClInclude Include="box.h" />
     <ClInclude Include="Controller.h" />
