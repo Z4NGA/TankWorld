@@ -15,9 +15,10 @@
 #include "menuScene.h"
 #include "Tent.h"
 #include "controleStation.h"
+#include "Aircraft.h"
 #include <math.h>
 #define M_PI acos(-1.)
-#define all_textures 0.30
+#define all_textures 0.32
 
 //textures should be front / right / back / left /top /bot
 
@@ -32,6 +33,7 @@ box* b2;
 box* b3;
 Tent* tent;
 controleStation* cs;
+Aircraft* heli;
 //base_scene* base; 
 GameEngine* ge;
 Scene* mainmenu; 
@@ -50,6 +52,7 @@ GLuint sky3, ground3, wall3;//set of textures scene3
 GLuint menubg, play, controls, credits, options, quit,cursor ,pausebg , cont ,deathbg,retry;//menu textures
 GLuint useobject; //game ui textures
 GLuint gate_frontback,gatewall, gatebar_texture; //controller textures
+GLuint metal,alum;
 int h, w;
 float CamXpos=0., camYpos=1., camZpos=0.; //defines where the cam stands
 float centerx=0.7, centery= 0.9, centerz=0.;  //defines where the cam looks
@@ -134,6 +137,11 @@ void loadtext() {
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
 	gatewall = SOIL_load_OGL_texture("gatewall.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	
+	metal = SOIL_load_OGL_texture("metal.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT | SOIL_FLAG_TEXTURE_REPEATS);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	alum = SOIL_load_OGL_texture("alum.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT | SOIL_FLAG_TEXTURE_REPEATS);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
 
 	std::cout << "\033[0m";
 }
@@ -200,6 +208,7 @@ void RenderScene() //Zeichenfunktion
 	position p2(1, 1, 1);
 	position::print(p - p2);
 	*/
+	heli->rotatebackwing(value);
 	ge->drawCurrentScene();
 	//drawcrosshair();z
 	//glPopMatrix();
@@ -368,12 +377,16 @@ int main(int argc, char** argv)
 	tent->setposition(-4., 0., -2.);
 	cs = new controleStation(3.0, 2.0, 1.);
 	cs->setposition(4.,0.,-2.);
+	heli = new Aircraft(7., 2., 1., "helicopter");
+	heli->setposition(4., 0., 1.);
+	
 	//adding gameobjects
 	ge->addObjecttocurrentscene(b);
 	ge->addObjecttocurrentscene(b2);
 	ge->addObjecttocurrentscene(b3);
 	ge->addObjecttocurrentscene(tent);
 	ge->addObjecttocurrentscene(cs);
+	ge->addObjecttocurrentscene(heli);
 	ge->setCurrentScene(mainmenu);
 
 	glutInit(&argc, argv);                // GLUT initialisieren
