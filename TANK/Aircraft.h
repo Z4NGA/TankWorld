@@ -19,5 +19,7 @@ public :
 	void drawwheels();//helicopter
 	void drawblade(float x, float y, float z);
 	void rotatebackwing(float angle);
+	void rotatetopwing(float angle);
+	void drawrotator(float tempx, float tempy, float tempz);
 };
 

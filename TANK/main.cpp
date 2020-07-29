@@ -138,7 +138,7 @@ void loadtext() {
 	gatewall = SOIL_load_OGL_texture("gatewall.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
 	
-	metal = SOIL_load_OGL_texture("metal.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT | SOIL_FLAG_TEXTURE_REPEATS);
+	metal = SOIL_load_OGL_texture("greenmetal.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT | SOIL_FLAG_TEXTURE_REPEATS);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
 	alum = SOIL_load_OGL_texture("alum.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT | SOIL_FLAG_TEXTURE_REPEATS);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
@@ -209,6 +209,7 @@ void RenderScene() //Zeichenfunktion
 	position::print(p - p2);
 	*/
 	heli->rotatebackwing(value);
+	heli->rotatetopwing(value * 3);
 	ge->drawCurrentScene();
 	//drawcrosshair();z
 	//glPopMatrix();
