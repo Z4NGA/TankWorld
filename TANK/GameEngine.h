@@ -15,6 +15,7 @@ class GameEngine
 	
 public:
 	Scene* current_scene; 
+	bool isusing,hasobjectinrange; 
 	std::vector<Scene*> game_scenes; 
 	std::vector<Scene*> menu_scenes;
 	GameObject* controlled_object;
@@ -24,6 +25,7 @@ public:
 	Controller* controller; 
 	GameEngine();
 	void setcontrolledobject(GameObject* obj); 
+	void releasecontrolledobject();
 	bool collisiondetection();//checks collision detection of current object with the world
 	bool iscolliding(std::vector<float> border1, std::vector<float> border2);
 	void setCurrentScene(Scene* s);

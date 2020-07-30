@@ -5,7 +5,9 @@ box::box(float x, float y, float z) : GameObject()  {
 	zLen = z; 
 	xoffset = 0; yoffset = 0; zoffset = 0;
 	iscolliding = false; 
+	usable = true;
 	type = "box";
+	generaltype = "box";
 	inrange = false;
 }
 void box::spawn() {
@@ -13,6 +15,10 @@ void box::spawn() {
 	glPopMatrix();  
 	glPushMatrix();
 	glTranslatef(0.+xoffset, yLen * 0.5+yoffset, 0.+zoffset);
+	//aplying object roations 
+	glRotatef(xrotationangle, 1., 0., 0.);
+	glRotatef(yrotationangle, 0., 1., 0.);
+	glRotatef(zrotationangle, 0., 0., 1.);
 	drawbox();
 }
 void box::setposition(float x, float y, float z) {

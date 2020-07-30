@@ -4,53 +4,102 @@
 Controller::Controller(GameEngine*  p) {
 	engineincontrol = p;
 	CamXpos = 0., camYpos = 1., camZpos = 0.; //defines where the cam stands
-	centerx = 0.7, centery = 0.9, centerz = 0.;  //defines where the cam looks
+	centerx = 0.7, centery = 0.9, centerz = -1.;  //defines where the cam looks
 	controlled_object = nullptr; 
+}
+void Controller::resetcenterpos() {
+	centerx = 0.7; centery = -0.1; centerz = -1.;  //defines where the cam looks
+}
+void Controller::setcenterpos(float x , float y, float z) {
+	centerx = x; centery = y; centerz = z;  //defines where the cam looks
 }
 //bound function maybe passed into the callack function
 void Controller::keyboardfunc(unsigned char key, int x, int y) {
 	
 	if (engineincontrol->current_scene->type._Equal("game_scene")) {
-		// if the scene  is 3d game scene  ,cam will move
-		float xpos = (float)x;
-		float ypos = (float)y;
-		switch (key) {
-			case 27 :
-				engineincontrol->onpause();
-				break;
-			case 'z':
-				//camZpos -= 0.035; //moving to the front means -z
-				//move toward the line of sight vector , means in direction of the person's sight
-				camZpos += 0.035 * (centerz);//camera position must be included when calculating the direction vector
-				CamXpos += 0.035 * (centerx);//so the player walks in a straight line towards middle of screen(crosshair)
-				break;
-			case 's':
-				//camZpos += 0.035; // moving backward means +z
-				//move toward the line of sight vector , means in direction of the person's sight
-				camZpos -= 0.035 * (centerz);
-				CamXpos -= 0.035 * (centerx);
-				break;
-			case 'q':
-				//CamXpos -= 0.035;
-				break;
-			case 'd':
-				//CamXpos += 0.035;
-				break;
-			case 'v'://debug
-				//if (xdebug.size() > 0) xdebug.pop_back();
-				break;
-			case ' ':
-				camYpos += 0.035;
-				break;
-			case 'e'://change of scene
-				engineincontrol->changescene(rand());
-				break;
+			// if the scene  is 3d game scene  ,cam will move
+		if (engineincontrol->isusing) { //when the player is using an object
+			float xpos = (float)x;
+			float ypos = (float)y;
+			switch (key) {
+				case 27:
+					engineincontrol->onpause();
+					break;
+				case 'z':
+					//camZpos -= 0.035; //moving to the front means -z
+					//move toward the line of sight vector , means in direction of the person's sight
+					engineincontrol->controlled_object->addoffsettoposition(0.035 * (centerx), 0., 0.035 * (centerz));
+					camZpos += 0.035 * (centerz);//camera position must be included when calculating the direction vector
+					CamXpos += 0.035 * (centerx);//so the player walks in a straight line towards middle of screen(crosshair)
+					break;
+				case 's':
+					//camZpos += 0.035; // moving backward means +z
+					//move toward the line of sight vector , means in direction of the person's sight
+					engineincontrol->controlled_object->addoffsettoposition(-0.035 * (centerx), 0., -0.035 * (centerz));
+					camZpos -= 0.035 * (centerz);
+					CamXpos -= 0.035 * (centerx);
+					break;
+				case 'q':
+					//CamXpos -= 0.035;
+					break;
+				case 'd':
+					//CamXpos += 0.035;
+					break;
+				case 'v'://debug
+					//if (xdebug.size() > 0) xdebug.pop_back();
+					break;
+				case ' ':
+					if(engineincontrol->controlled_object->generaltype._Equal("aircraft")|| engineincontrol->controlled_object->generaltype._Equal("box"))
+						engineincontrol->controlled_object->addoffsettoposition(0., 0.045, 0.);
+						camYpos += 0.045;
+					break;
+				case 'e'://change of scene
+					engineincontrol->releasecontrolledobject();
+					break;
+			}
 		}
-		std::cout << key << " was pressed at " << xpos << " , " << ypos << std::endl;
+		else{ //when the player is on foot
+			float xpos = (float)x;
+			float ypos = (float)y;
+			switch (key) {
+				case 27:
+					engineincontrol->onpause();
+					break;
+				case 'z':
+					//camZpos -= 0.035; //moving to the front means -z
+					//move toward the line of sight vector , means in direction of the person's sight
+					camZpos += 0.035 * (centerz);//camera position must be included when calculating the direction vector
+					CamXpos += 0.035 * (centerx);//so the player walks in a straight line towards middle of screen(crosshair)
+					break;
+				case 's':
+					//camZpos += 0.035; // moving backward means +z
+					//move toward the line of sight vector , means in direction of the person's sight
+					camZpos -= 0.035 * (centerz);
+					CamXpos -= 0.035 * (centerx);
+					break;
+				case 'q':
+					//CamXpos -= 0.035;
+					break;
+				case 'd':
+					//CamXpos += 0.035;
+					break;
+				case 'v'://debug
+					//if (xdebug.size() > 0) xdebug.pop_back();
+					break;
+				case ' ':
+					camYpos += 0.035;
+					break;
+				case 'e'://change of scene
+					if(engineincontrol->hasobjectinrange)
+						engineincontrol->setcontrolledobject(engineincontrol->objectinrange);
+					break;
+			}
+			std::cout << key << " was pressed at " << xpos << " , " << ypos << std::endl;
+		}
 		//glutPostRedisplay();
 	}
-	else {
-		// if the scene  is a menu scene 
+	else {// if the scene  is a menu scene 
+		
 		if (engineincontrol->current_scene->name._Equal("pause")) { //pause menu handler
 			switch (key) {
 				case 27:
@@ -110,37 +159,62 @@ void Controller::arrowfunc(int key, int x, int y) {// handles the special keys s
 	
 	if (engineincontrol->current_scene->type._Equal("game_scene")) {
 		// if the scene  is 3d game scene  ,cam and object will be able to move
-		switch (key) {
-		case GLUT_KEY_UP:
-			std::cout << " ARROW_UP\n";
-			/*t->tiltcannon(1);
-			b->movez(0.015);
-			b->iscolliding = iscolliding(b->getborder(), b2->getborder());
-			*/break;
-		case GLUT_KEY_DOWN:
-			std::cout << " ARROW_DOWN\n";
-			camYpos -= 0.035;
-			/*t->tiltcannon(-1);
-			b->movez(-0.015);
-			b->iscolliding = iscolliding(b->getborder(), b2->getborder());
-			*/break;
-		case GLUT_KEY_LEFT:
-			std::cout << " ARROW_LEFT\n";
-			/*t->turntop(2);
-			b->movex(-0.015);
-			b->iscolliding = iscolliding(b->getborder(), b2->getborder());
-			*/break;
-		case GLUT_KEY_RIGHT:
-			std::cout << " ARROW_RIGHT\n";
-			/*t->turntop(-2);
-			b->movex(0.015);
-			b->iscolliding = iscolliding(b->getborder(), b2->getborder());
-			*/break;
-		case GLUT_KEY_CTRL_L:
-			std::cout << "CTRL Left \n";
-		
-			//can be upgraded to go left right forward back according to the direction vector
-			break;
+		if (engineincontrol->isusing) { //when the player is using an object
+			switch (key) {
+			case GLUT_KEY_UP:
+				std::cout << " ARROW_UP\n";
+				break;
+			case GLUT_KEY_DOWN:
+				std::cout << " ARROW_DOWN\n";
+				if(engineincontrol->controlled_object->generaltype._Equal("aircraft")||engineincontrol->controlled_object->generaltype._Equal("box"))
+					engineincontrol->controlled_object->addoffsettoposition(0., -0.045, 0.);
+				camYpos -= 0.045;
+				break;
+			case GLUT_KEY_LEFT:
+				std::cout << " ARROW_LEFT\n";
+				break;
+			case GLUT_KEY_RIGHT:
+				std::cout << " ARROW_RIGHT\n";
+				break;
+			case GLUT_KEY_CTRL_L:
+				std::cout << "CTRL Left \n";
+				//can be upgraded to go left right forward back according to the direction vector
+				break;
+			}
+		}
+		else {
+			switch (key) {
+			case GLUT_KEY_UP:
+				std::cout << " ARROW_UP\n";
+				/*t->tiltcannon(1);
+				b->movez(0.015);
+				b->iscolliding = iscolliding(b->getborder(), b2->getborder());
+				*/break;
+			case GLUT_KEY_DOWN:
+				std::cout << " ARROW_DOWN\n";
+				camYpos -= 0.035;
+				/*t->tiltcannon(-1);
+				b->movez(-0.015);
+				b->iscolliding = iscolliding(b->getborder(), b2->getborder());
+				*/break;
+			case GLUT_KEY_LEFT:
+				std::cout << " ARROW_LEFT\n";
+				/*t->turntop(2);
+				b->movex(-0.015);
+				b->iscolliding = iscolliding(b->getborder(), b2->getborder());
+				*/break;
+			case GLUT_KEY_RIGHT:
+				std::cout << " ARROW_RIGHT\n";
+				/*t->turntop(-2);
+				b->movex(0.015);
+				b->iscolliding = iscolliding(b->getborder(), b2->getborder());
+				*/break;
+			case GLUT_KEY_CTRL_L:
+				std::cout << "CTRL Left \n";
+
+				//can be upgraded to go left right forward back according to the direction vector
+				break;
+			}
 		}
 	}
 	else {
@@ -160,23 +234,38 @@ void Controller::arrowfunc(int key, int x, int y) {// handles the special keys s
 		case GLUT_KEY_RIGHT:
 			std::cout << " ARROW_RIGHT\n";
 			break;
-		
 		}
 	}
 }
 void Controller::noclick_motion(int x, int y) {
 	std::cout << "\033[31mMouseXpos = " << x << ", MouseYpos = " << y << " .\033[0m\n";
 	if (engineincontrol->current_scene->type._Equal("game_scene")) {
-		//mouse will be used to move camera line of sight 360° around while game_scene
-			//gonna set higher sensitivity for now due to the small screen size
+		if (engineincontrol->isusing) {
+			//mouse will be used to move camera line of sight 360° around while game_scene
+			//cam movement will result in turning the object
 
-		float angle = ((float(x) - float(Width/2.)) / (float)(Width / 2.)) * 180. + 90;
-		centerx = 2. * cos(angle * M_PI / 180.);
-		centerz = 2. * sin(angle * M_PI / 180.);
-		//centerx = float(x - 300.) / (float)xdebug.at(xdebug.size()-1);
-		centery = -float(y - (Height / 2.)) / 50.;
-		std::cout << "\033[34mCenterx = " << centerx << " .\033[0m\n";
-		std::cout << "\033[34mCenterz = " << centerz << " .\033[0m\n";
+			float angle = ((float(x) - float(Width / 2.)) / (float)(Width / 2.)) * 180. + 90;
+			centerx = 2. * cos(angle * M_PI / 180.);
+			centerz = 2. * sin(angle * M_PI / 180.);
+			//centerx = float(x - 300.) / (float)xdebug.at(xdebug.size()-1);
+			centery = -float(y - (Height / 2.)) / 50.;
+			float zaxisangle = ((float(x) - float(Width / 2.)) / (float)(Width / 2.)) * 180. + 90;
+			engineincontrol->controlled_object->rotateobject(0., 180-angle, 0.);
+			std::cout << "\033[34mCenterx = " << centerx << " .\033[0m\n";
+			std::cout << "\033[34mCenterz = " << centerz << " .\033[0m\n";
+		}
+		else {
+			//mouse will be used to move camera line of sight 360° around while game_scene
+					//gonna set higher sensitivity for now due to the small screen size
+
+			float angle = ((float(x) - float(Width / 2.)) / (float)(Width / 2.)) * 180. + 90;
+			centerx = 2. * cos(angle * M_PI / 180.);
+			centerz = 2. * sin(angle * M_PI / 180.);
+			//centerx = float(x - 300.) / (float)xdebug.at(xdebug.size()-1);
+			centery = -float(y - (Height / 2.)) / 50.;
+			std::cout << "\033[34mCenterx = " << centerx << " .\033[0m\n";
+			std::cout << "\033[34mCenterz = " << centerz << " .\033[0m\n";
+		}
 	}
 	else {
 		//mouse will be used to make hover effect over the buttons while menu_scene
@@ -205,7 +294,8 @@ void Controller::resetlook() {
 	//resets the look to suit  a game_scene
 	glPopMatrix();//pop the latest matrix on stack to modify if exist
 	glLoadIdentity();//reset the currently loaded matrix if it exists
-	gluLookAt(CamXpos, camYpos, camZpos, centerx + CamXpos, centery, centerz + camZpos - 1., 0., 1., 0.);//set the lookAt
+	if(engineincontrol->isusing) gluLookAt(CamXpos, camYpos, camZpos, centerx + CamXpos, centery+camYpos, centerz + camZpos , 0., 1., 0.);
+	else gluLookAt(CamXpos, camYpos, camZpos, centerx + CamXpos, centery, centerz + camZpos , 0., 1., 0.);//set the lookAt
 	//look behind on the z axis so the left side is -x , right is +x , front -z , back is +z
 	glPushMatrix();
 	displaydetectionrange();
@@ -280,7 +370,8 @@ bool Controller::isindetectionrange(GameObject*  obj) {
 	float expectedcenterdistance = detectionrange + (obj->xLen*sqrt(2)/2.); // will be calculated as the radius + diagonal
 	float currentcenterdistance  = sqrt(pow((obj->xoffset - CamXpos), 2) + /*pow((obj->yoffset - camYpos), 2) y offset will be ignored for now*/+ pow((obj->zoffset - camZpos), 2) );
 	bool result = (currentcenterdistance < expectedcenterdistance); 
-	if (currentcenterdistance < expectedcenterdistance) std::cout << "object " << obj->type << " is in range of the player !! \n";
+	if (currentcenterdistance < expectedcenterdistance) std::cout << "object " << obj->type << " is in range of the player !! \nxoffsetdif = "<<
+		obj->xoffset-CamXpos<< ", yoffsetdif = "<<obj->yoffset - camYpos <<", zoffsetdif = "<<obj->zoffset-camZpos<< "\n";
 	obj->inrange = result; 
 	return result;
 }

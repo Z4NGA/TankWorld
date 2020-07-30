@@ -4,7 +4,6 @@ GameObject::GameObject() {
 }
 GameObject::GameObject(float x, float y, float z) : xLen(x), yLen(y), zLen(z) {
 	xoffset = 0; yoffset = 0; zoffset = 0; 
-	type = "undefined";
 	inrange = false;
 }
 std::vector<float> GameObject::getborder() {
@@ -20,4 +19,12 @@ std::vector<float> GameObject::getborder() {
 }
 void GameObject::setposition(float x, float y, float z) {
 	xoffset = x; yoffset = y;   zoffset = z;
+}
+void GameObject::addoffsettoposition(float x, float y, float z) {
+	xoffset += x; yoffset += y;   zoffset += z;
+}
+void GameObject::rotateobject(float xangle, float yangle, float zangle) {
+	xrotationangle = xangle; 
+	yrotationangle = yangle; 
+	zrotationangle = zangle;
 }

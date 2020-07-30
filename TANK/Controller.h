@@ -26,6 +26,8 @@ public:
 	void setmenulook(); 
 	void selectbasedoncursor();
 	void setcampos(float x, float y, float z);
+	void resetcenterpos();
+	void setcenterpos(float x, float y, float z);
 	void displaydetectionrange(); 
 	bool isindetectionrange(GameObject* obj);
 };

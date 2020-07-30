@@ -3,13 +3,31 @@ GameEngine::GameEngine() {
 	controller = new Controller(this); 
 	status = "dead";
 	controlled_object = nullptr; 
+	isusing = false;
+	hasobjectinrange = false;
 }
 void GameEngine::setcontrolledobject(GameObject* obj) {
 	controlled_object = obj;
 	controller->controlled_object = obj; 
-	current_scene->setControllledObject(obj);// will be modified to activate on key press
+	isusing = true;
+	if(obj->generaltype._Equal("aircraft")) 
+		//inside view will be implemented later on
+		//controller->setcampos(obj->xoffset , obj->yoffset+1.87, obj->zoffset); //need to find optimal point for the camera to watch the object controlled 
+		//outside view for now 
+		controller->setcampos(obj->xoffset, obj->yoffset + 3.7, obj->zoffset); //need to find optimal point for the camera to watch the object controlled 2.22
+	else controller->setcampos(obj->xoffset,obj->yoffset+obj->yLen+0.5,obj->zoffset); //need to find optimal point for the camera to watch the object controlled 
+	current_scene->setControllledObject(obj);// will be modified to activate on key press // i think useless
 }
-
+void GameEngine::releasecontrolledobject() {
+	if (!isusing) std::cout << "player isnt currently using any objects!\n";
+	else {
+		controller->setcampos(controlled_object->xoffset , 1., controlled_object->zoffset+controlled_object->zLen+0.5);
+		//need to find optimal point for the camera to watch the player get off from the object in control
+		isusing = false; 
+		controlled_object = nullptr;
+	}
+	
+}
 
 /*
 @brief checks whether 2 3d objects collides or not
@@ -43,17 +61,22 @@ void GameEngine::drawCurrentScene() {
 	{
 		if (current_scene->type._Equal("game_scene")) {
 			controller->resetlook();
-			for (GameObject* o : current_scene->scene_objects) {
-				if (controller->isindetectionrange(o)) {
-					objectinrange = o;
-					controller->setmenulook();
-					current_scene->displayinrangeui(); 
-					controller->resetlook();
-					break;
+			if (!isusing) { //when not using anyobject the game engine will check if any object is in range
+				for (GameObject* o : current_scene->scene_objects) {
+					if (o->usable) {
+						if (controller->isindetectionrange(o)) {
+							hasobjectinrange = true;
+							objectinrange = o;
+							controller->setmenulook();
+							current_scene->displayinrangeui();
+							controller->resetlook();
+							break;
+						}
+					}
+					hasobjectinrange = false; 
 				}
 			}
 		}
-
 		else controller->setmenulook();
 		current_scene->display();
 	}

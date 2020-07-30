@@ -1,12 +1,13 @@
 #include "Aircraft.h"
 Aircraft::Aircraft() {
-	type = "aircraft";
+	generaltype = "aircraft";
 	usable = true; 
 	inrange = false; 
 	backwingrotationangle = 0; topwingrotationangle = 0.;
 	xoffset = 0; yoffset = 0; zoffset = 0;
 }
 Aircraft::Aircraft(float x, float y, float z, std::string t) {
+	generaltype = "aircraft";
 	xLen = x;  yLen = y; zLen = z;
 	backwingrotationangle = 0; topwingrotationangle = 0.;
 	type = t;
@@ -25,6 +26,10 @@ void Aircraft::spawn() {
 	glPopMatrix();
 	glPushMatrix();
 	glTranslatef(0.+xoffset, yLen / 2.+yoffset, 0.+zoffset);
+	//aplying object roations 
+	glRotatef(xrotationangle, 1., 0., 0.);
+	glRotatef(yrotationangle, 0., 1., 0.);
+	glRotatef(zrotationangle, 0., 0., 1.);
 	drawcore();
 	drawback();
 	drawwings();
