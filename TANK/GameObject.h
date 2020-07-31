@@ -10,6 +10,7 @@ public:
 	bool inrange;
 	bool usable; //indicates if an object is usable 
 	//gates and controle stations only
+	bool turnedon = false;
 	float opengateangle, opengateoffset; //describes gate angle and offset when open
 	float closedgateangle, closedgateoffset;  // describes gate angle and offset whn closed
 	float currentgateoffset, currentgateangle; //describes current gate offset and angle 
@@ -24,6 +25,8 @@ public:
 	void addoffsettoposition(float x, float y, float z);
 	virtual void opengate(){}
 	virtual void closegate(){}
+	virtual void tiltcannon(float angle){}
+	virtual void turntop(float angle){}
 	std::vector<float> getborder();
 	virtual void spawn() = 0;
 };

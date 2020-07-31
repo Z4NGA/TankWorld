@@ -3,13 +3,14 @@
 #include <string>
 #include <vector>
 #include <GL/freeglut.h>
-extern GLuint metal,alum; 
+extern GLuint metal,alum, blackalum , orangealum;
 class Aircraft : public GameObject
 {
 public :
 	float backwingrotationangle, topwingrotationangle;
+	std::string color; 
 	Aircraft();
-	Aircraft(float x, float y, float z , std::string type);
+	Aircraft(float x, float y, float z , std::string type , std::string c="metal");
 	void spawn();
 	void drawcore(); 
 	void drawback();

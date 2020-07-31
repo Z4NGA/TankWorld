@@ -18,7 +18,7 @@
 #include "Aircraft.h"
 #include <math.h>
 #define M_PI acos(-1.)
-#define all_textures 0.36
+#define all_textures 0.38
 
 //textures should be front / right / back / left /top /bot
 
@@ -31,9 +31,9 @@ tank* t;
 box* b;
 box* b2;
 box* b3;
-Tent* tent;
+std::vector<Tent*> tent;
 controleStation* cs;
-Aircraft* heli;
+std::vector<Aircraft*> heli;
 //base_scene* base; 
 GameEngine* ge;
 Scene* mainmenu;
@@ -54,7 +54,7 @@ GLuint menubg, play, controls, credits, options, quit,cursor ,pausebg , cont ,de
 GLuint controlsbg, back;//controls texture
 GLuint useobject; //game ui textures
 GLuint gate_frontback,gatewall, gatebar_texture; //controller textures
-GLuint metal,alum;
+GLuint metal,alum,blackalum, orangealum;
 int h, w;
 float CamXpos=0., camYpos=1., camZpos=0.; //defines where the cam stands
 float centerx=0.7, centery= 0.9, centerz=0.;  //defines where the cam looks
@@ -158,6 +158,10 @@ void loadtext() {
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
 	alum = SOIL_load_OGL_texture("alum.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT | SOIL_FLAG_TEXTURE_REPEATS);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	blackalum = SOIL_load_OGL_texture("blackalum.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT | SOIL_FLAG_TEXTURE_REPEATS);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	orangealum = SOIL_load_OGL_texture("orangealum.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT | SOIL_FLAG_TEXTURE_REPEATS);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
 
 	std::cout << "\033[0m";
 }
@@ -229,8 +233,8 @@ void RenderScene() //Zeichenfunktion
 	position p2(1, 1, 1);
 	position::print(p - p2);
 	*/
-	heli->rotatebackwing(value);
-	heli->rotatetopwing(value * 3);
+	//heli->rotatebackwing(value);
+	//heli->rotatetopwing(value * 3);
 	ge->drawCurrentScene();
 	//drawcrosshair();z
 	//glPopMatrix();
@@ -375,14 +379,14 @@ int main(int argc, char** argv)
 {
 	ge = new GameEngine();
 	base = new gameScene("base","game_scene");
-	beach = new gameScene("beach", "game_scene");
+	beach = new gameScene("base", "game_scene");
 	forest = new gameScene("forest","game_scene");
 	mainmenu = new menuScene("main", "menu_scene");
 	controlsmenu = new menuScene("controls", "menu_scene");
 	pause = new menuScene("pause", "menu_scene");
 	death = new menuScene("death","menu_scene");
-	ge->addgamescene(base);
-	ge->addgamescene(beach);
+	ge->addgamescene(base);//0
+	ge->addgamescene(beach);//1
 	ge->addgamescene(forest);
 	ge->addmenuscene(mainmenu);//1
 	ge->addmenuscene(pause);//2
@@ -397,21 +401,64 @@ int main(int argc, char** argv)
 	b3->setposition(1., 0., 2.);
 	t = new tank(3.4, 1.8, 3.3);
 	t->setposition(15, 0., 4);
-	tent = new Tent(3.4, 2.2, 3.6);
-	tent->setposition(-4., 0., -2.);
+	heli.push_back(new Aircraft(7., 2., 1.5, "helicopter"));
+	heli.push_back(new Aircraft(7., 2., 1.5, "helicopter", "blackalum"));
+	heli.push_back(new Aircraft(7., 2., 1.5, "helicopter", "blackalum"));
+	heli.push_back(new Aircraft(7., 2., 1.5, "helicopter", "orangealum"));
+	heli[0]->setposition(-20., 0., 1.5 );
+	heli[1]->setposition(20., 0., 1.5 );
+	heli[2]->setposition(-20., 0., -20. );
+	heli[3]->setposition(20., 0., -20. );
+	for (int i = 0; i < 12; i++)
+		{
+		if (i % 3 == 0) tent.push_back(new Tent(3.4, 2.2, 7.6));
+		else tent.push_back(new Tent(3.4, 2.2, 3.6));	
+		}
+	tent[2]->setposition(-30., 0., 6.5);
+	tent[1]->setposition(-30., 0., -4.5);
+	tent[0]->setposition(-35., 0., 1.5);
+
+	tent[5]->setposition(30., 0., 6.5);
+	tent[4]->setposition(30., 0., -4.5);
+	tent[3]->setposition(35., 0., 1.5);
+
+	tent[8]->setposition(-30., 0., -16.5);
+	tent[7]->setposition(-30., 0., -26.5);
+	tent[6]->setposition(-35., 0., -21.5);
+
+	tent[11]->setposition(30., 0., -16.5);
+	tent[10]->setposition(30., 0., -26.5);
+	tent[9]->setposition(35., 0., -21.5);
+
+	
+
 	cs = new controleStation(4.0, 2.0, 1.);
 	cs->setposition(20,0.,10);
-	heli = new Aircraft(7., 2., 1., "helicopter");
-	heli->setposition(4., 0., 1.);
+	
+	
 	
 	//adding gameobjects
-	//ge->addObjecttocurrentscene(t);
+	
 	ge->addObjecttocurrentscene(b);
 	ge->addObjecttocurrentscene(b2);
 	ge->addObjecttocurrentscene(b3);
-	ge->addObjecttocurrentscene(tent);
+	for (int i = 0; i < 12; i++)
+		ge->addObjecttocurrentscene(tent[i]);
+	for (int i = 0; i < 4; i++)
+		ge->addObjecttocurrentscene(heli[i]);
+	
 	ge->addObjecttocurrentscene(cs);
-	ge->addObjecttocurrentscene(heli);
+	//adding objects to scenes
+	ge->setCurrentScene(beach);
+	ge->addObjecttocurrentscene(t); //causing scenes to lag due to high quality chain & rims ,LOL :)
+	ge->addObjecttocurrentscene(b);
+	ge->addObjecttocurrentscene(b2);
+	ge->addObjecttocurrentscene(b3);
+	ge->addObjecttocurrentscene(cs);
+	for (int i = 0; i < 12; i++)
+		ge->addObjecttocurrentscene(tent[i]);
+	/**/
+
 	ge->setCurrentScene(mainmenu);
 
 	glutInit(&argc, argv);                // GLUT initialisieren

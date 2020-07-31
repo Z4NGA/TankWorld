@@ -6,7 +6,8 @@ Aircraft::Aircraft() {
 	backwingrotationangle = 0; topwingrotationangle = 0.;
 	xoffset = 0; yoffset = 0; zoffset = 0;
 }
-Aircraft::Aircraft(float x, float y, float z, std::string t) {
+Aircraft::Aircraft(float x, float y, float z, std::string t, std::string c) {
+	color = c;
 	generaltype = "aircraft";
 	xLen = x;  yLen = y; zLen = z;
 	backwingrotationangle = 0; topwingrotationangle = 0.;
@@ -22,6 +23,8 @@ void Aircraft::rotatetopwing(float angle) {
 	topwingrotationangle = angle;
 }
 void Aircraft::spawn() {
+	if (turnedon) { backwingrotationangle += 5; topwingrotationangle += 5; }
+	else { backwingrotationangle = 0; topwingrotationangle = 0; }
 	glLoadIdentity();
 	glPopMatrix();
 	glPushMatrix();
@@ -41,7 +44,9 @@ void Aircraft::drawcore() {
 	float tempx = xLen, tempy = yLen*0.5, tempz = zLen * 0.5;
 	if (type._Equal("helicopter")) {
 		tempx = xLen*0.7, tempy = yLen , tempz = zLen * 0.5;
-		glBindTexture(GL_TEXTURE_2D, metal);;
+		if (color._Equal("orangealum")) glBindTexture(GL_TEXTURE_2D, orangealum);
+		if (color._Equal("blackalum")) glBindTexture(GL_TEXTURE_2D, blackalum);
+		else  glBindTexture(GL_TEXTURE_2D, metal);
 		glEnable(GL_TEXTURE_2D);
 		///
 		/// FRONT

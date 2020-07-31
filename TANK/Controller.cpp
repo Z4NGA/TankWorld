@@ -55,7 +55,11 @@ void Controller::keyboardfunc(unsigned char key, int x, int y) {
 						camYpos += 0.065;
 						}
 					break;
-				case 'e'://change of scene
+				case 'x'://change of scene
+					engineincontrol->changescene(BEACH_SCENE);
+					break;
+				case 'e':
+					engineincontrol->controlled_object->turnedon = false; 
 					engineincontrol->releasecontrolledobject();
 					break;
 			}
@@ -91,9 +95,15 @@ void Controller::keyboardfunc(unsigned char key, int x, int y) {
 				case ' ':
 					camYpos += 0.035;
 					break;
-				case 'e'://change of scene
-					if(engineincontrol->hasobjectinrange)
+				case 'x'://change of scene
+					engineincontrol->changescene(BEACH_SCENE);
+					break;
+				case 'e':
+					if (engineincontrol->hasobjectinrange)
+					{
 						engineincontrol->setcontrolledobject(engineincontrol->objectinrange);
+						engineincontrol->controlled_object->turnedon = true;
+					}
 					break;
 			}
 			std::cout << key << " was pressed at " << xpos << " , " << ypos << std::endl;
@@ -175,6 +185,8 @@ void Controller::arrowfunc(int key, int x, int y) {// handles the special keys s
 			switch (key) {
 			case GLUT_KEY_UP:
 				std::cout << " ARROW_UP\n";
+				if(engineincontrol->controlled_object->type._Equal("tank"))
+					engineincontrol->controlled_object->tiltcannon(2.) ;
 				break;
 			case GLUT_KEY_DOWN:
 				std::cout << " ARROW_DOWN\n";
@@ -183,12 +195,18 @@ void Controller::arrowfunc(int key, int x, int y) {// handles the special keys s
 					engineincontrol->controlled_object->addoffsettoposition(0., -0.065, 0.);
 					camYpos -= 0.065;
 					}
+				if (engineincontrol->controlled_object->type._Equal("tank"))
+					engineincontrol->controlled_object->tiltcannon(-2.);
 				break;
 			case GLUT_KEY_LEFT:
 				std::cout << " ARROW_LEFT\n";
+				if (engineincontrol->controlled_object->type._Equal("tank"))
+					engineincontrol->controlled_object->turntop(2.);
 				break;
 			case GLUT_KEY_RIGHT:
 				std::cout << " ARROW_RIGHT\n";
+				if (engineincontrol->controlled_object->type._Equal("tank"))
+					engineincontrol->controlled_object->turntop(-2.);
 				break;
 			case GLUT_KEY_CTRL_L:
 				std::cout << "CTRL Left \n";

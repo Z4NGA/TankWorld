@@ -10,11 +10,12 @@ void GameEngine::setcontrolledobject(GameObject* obj) {
 	controlled_object = obj;
 	controller->controlled_object = obj; 
 	isusing = true;
-	if(obj->generaltype._Equal("aircraft")) 
+	if (obj->generaltype._Equal("aircraft"))
 		//inside view will be implemented later on
 		//controller->setcampos(obj->xoffset , obj->yoffset+1.87, obj->zoffset); //need to find optimal point for the camera to watch the object controlled 
 		//outside view for now 
 		controller->setcampos(obj->xoffset, obj->yoffset + 3.7, obj->zoffset); //need to find optimal point for the camera to watch the object controlled 2.22
+		
 	else controller->setcampos(obj->xoffset,obj->yoffset+obj->yLen+0.5,obj->zoffset); //need to find optimal point for the camera to watch the object controlled 
 	current_scene->setControllledObject(obj);// will be modified to activate on key press // i think useless
 }
@@ -60,6 +61,8 @@ void GameEngine::drawCurrentScene() {
 	if (current_scene != nullptr)
 	{
 		if (current_scene->type._Equal("game_scene")) {
+			glEnable(GL_LIGHTING);
+			glEnable(GL_COLOR_MATERIAL);
 			controller->resetlook();
 			if (!isusing) { //when not using anyobject the game engine will check if any object is in range
 				for (GameObject* o : current_scene->scene_objects) {
@@ -89,7 +92,7 @@ void GameEngine::drawCurrentScene() {
 				}
 			}
 		}
-		else controller->setmenulook();
+		else { glDisable(GL_LIGHTING); glDisable(GL_COLOR_MATERIAL); controller->setmenulook(); }
 		current_scene->display();
 	}
 	else std::cerr << "CURRENT SCENE UNDEFINED ???\n";

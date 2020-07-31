@@ -30,7 +30,7 @@ void Tent::spawn() {
 }
 void Tent::drawbot() {
 	float tempx=xLen, tempy=0.6*yLen, tempz=zLen; 
-	float texmax = 1.;
+	float texmax = 3.;
 	//front consisting from 3 parts
 	glBindTexture(GL_TEXTURE_2D, green);
 	glEnable(GL_TEXTURE_2D);
