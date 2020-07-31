@@ -73,7 +73,19 @@ void GameEngine::drawCurrentScene() {
 							break;
 						}
 					}
+					else if (o->type._Equal("controlestation")) {
+						if (controller->isindetectionrange(o)) o->opengate();
+						else o->closegate();
+					}
 					hasobjectinrange = false; 
+				}
+			}
+			else {
+				for (GameObject* o : current_scene->scene_objects) {
+					if (o->type._Equal("controlestation")) {
+						if (controller->isindetectionrange(o)) o->opengate();
+						else o->closegate();
+					}
 				}
 			}
 		}

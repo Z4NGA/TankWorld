@@ -12,6 +12,8 @@ public :
 	void drawbox(); 
 	void drawminigate();
 	void drawlargegate();
+	void opengate(); 
+	void closegate(); 
 	//to be  implemented 
 	//bool isopening , isclosing ;
 	//void opengate(float offset);

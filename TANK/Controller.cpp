@@ -28,16 +28,16 @@ void Controller::keyboardfunc(unsigned char key, int x, int y) {
 				case 'z':
 					//camZpos -= 0.035; //moving to the front means -z
 					//move toward the line of sight vector , means in direction of the person's sight
-					engineincontrol->controlled_object->addoffsettoposition(0.035 * (centerx), 0., 0.035 * (centerz));
-					camZpos += 0.035 * (centerz);//camera position must be included when calculating the direction vector
-					CamXpos += 0.035 * (centerx);//so the player walks in a straight line towards middle of screen(crosshair)
+					engineincontrol->controlled_object->addoffsettoposition(0.065 * (centerx), 0., 0.065 * (centerz));
+					camZpos += 0.065 * (centerz);//camera position must be included when calculating the direction vector
+					CamXpos += 0.065 * (centerx);//so the player walks in a straight line towards middle of screen(crosshair)
 					break;
 				case 's':
 					//camZpos += 0.035; // moving backward means +z
 					//move toward the line of sight vector , means in direction of the person's sight
-					engineincontrol->controlled_object->addoffsettoposition(-0.035 * (centerx), 0., -0.035 * (centerz));
-					camZpos -= 0.035 * (centerz);
-					CamXpos -= 0.035 * (centerx);
+					engineincontrol->controlled_object->addoffsettoposition(-0.045 * (centerx), 0., -0.045 * (centerz));
+					camZpos -= 0.045 * (centerz);
+					CamXpos -= 0.045 * (centerx);
 					break;
 				case 'q':
 					//CamXpos -= 0.035;
@@ -49,9 +49,11 @@ void Controller::keyboardfunc(unsigned char key, int x, int y) {
 					//if (xdebug.size() > 0) xdebug.pop_back();
 					break;
 				case ' ':
-					if(engineincontrol->controlled_object->generaltype._Equal("aircraft")|| engineincontrol->controlled_object->generaltype._Equal("box"))
-						engineincontrol->controlled_object->addoffsettoposition(0., 0.045, 0.);
-						camYpos += 0.045;
+					if (engineincontrol->controlled_object->generaltype._Equal("aircraft") || engineincontrol->controlled_object->generaltype._Equal("box"))
+						{
+						engineincontrol->controlled_object->addoffsettoposition(0., 0.065, 0.);
+						camYpos += 0.065;
+						}
 					break;
 				case 'e'://change of scene
 					engineincontrol->releasecontrolledobject();
@@ -166,9 +168,11 @@ void Controller::arrowfunc(int key, int x, int y) {// handles the special keys s
 				break;
 			case GLUT_KEY_DOWN:
 				std::cout << " ARROW_DOWN\n";
-				if(engineincontrol->controlled_object->generaltype._Equal("aircraft")||engineincontrol->controlled_object->generaltype._Equal("box"))
-					engineincontrol->controlled_object->addoffsettoposition(0., -0.045, 0.);
-				camYpos -= 0.045;
+				if (engineincontrol->controlled_object->generaltype._Equal("aircraft") || engineincontrol->controlled_object->generaltype._Equal("box"))
+					{
+					engineincontrol->controlled_object->addoffsettoposition(0., -0.065, 0.);
+					camYpos -= 0.065;
+					}
 				break;
 			case GLUT_KEY_LEFT:
 				std::cout << " ARROW_LEFT\n";
@@ -367,11 +371,28 @@ void Controller::displaydetectionrange() {
 	glEnd();
 }
 bool Controller::isindetectionrange(GameObject*  obj) {
-	float expectedcenterdistance = detectionrange + (obj->xLen*sqrt(2)/2.); // will be calculated as the radius + diagonal
-	float currentcenterdistance  = sqrt(pow((obj->xoffset - CamXpos), 2) + /*pow((obj->yoffset - camYpos), 2) y offset will be ignored for now*/+ pow((obj->zoffset - camZpos), 2) );
+	/*float expectedcenterdistance = detectionrange + (obj->xLen*sqrt(2)/2.); // will be calculated as the radius + diagonal
+	float currentcenterdistance  = sqrt(pow((obj->xoffset - CamXpos), 2) + pow((obj->yoffset - camYpos), 2) y offset will be ignored for now+ pow((obj->zoffset - camZpos), 2) );
 	bool result = (currentcenterdistance < expectedcenterdistance); 
 	if (currentcenterdistance < expectedcenterdistance) std::cout << "object " << obj->type << " is in range of the player !! \nxoffsetdif = "<<
 		obj->xoffset-CamXpos<< ", yoffsetdif = "<<obj->yoffset - camYpos <<", zoffsetdif = "<<obj->zoffset-camZpos<< "\n";
 	obj->inrange = result; 
-	return result;
+	return result;*/
+	//will surround the current object with a box 1.f wider and if the player collides with that box he's in range
+	float objoffset=1.5;
+	if (obj->type._Equal("controlestation")) objoffset = 3.;
+	float objxmax = obj->xoffset + obj->xLen / 2. + objoffset, objxmin = obj->xoffset - obj->xLen / 2. - objoffset;
+	float objymax = obj->yoffset + obj->yLen / 2. + objoffset, objymin = obj->yoffset - obj->yLen / 2. - objoffset;
+	float objzmax = obj->zoffset + obj->zLen / 2. + objoffset, objzmin = obj->zoffset - obj->zLen / 2. - objoffset;
+
+	if (CamXpos<objxmax && CamXpos>objxmin && camYpos<objymax && camYpos>objymin && camZpos<objzmax && camZpos>objzmin) {
+		std::cout << "object " << obj->type << " is in range of the player !! \nxoffsetdif = " <<
+			obj->xoffset - CamXpos << ", yoffsetdif = " << obj->yoffset - camYpos << ", zoffsetdif = " << obj->zoffset - camZpos << "\n";
+		obj->inrange = true;
+		return true;
+	}
+	else {
+		obj->inrange = false;
+		return false;
+	}
 }

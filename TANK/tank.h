@@ -4,17 +4,17 @@
 #include "math.h"
 #include <vector>
 #include <GL/freeglut.h>
-
+#include "GameObject.h"
 #define M_PI acos(-1.)
 #define EXCEPTION_ACCESS_VIOLATION          STATUS_ACCESS_VIOLATION // doesnt seem to fix it using extern variables for now 
 extern GLuint green, blue, grey, yellow;
-class tank
+class tank : public GameObject
 {
 public:
-	float xLen, yLen, zLen;
-	float i_xlen, i_ylen, i_zlen;
-	float dirx,diry,dirz; //vector that repesents the direction of the tank
-	float tank_x_offset, tank_y_offset, tank_z_offset; //represnts how much the tank has to travel based on previous offset and dir
+	//float xLen, yLen, zLen;
+	//float i_xlen, i_ylen, i_zlen;
+	//float dirx,diry,dirz; //vector that repesents the direction of the tank
+	//float tank_x_offset, tank_y_offset, tank_z_offset; //represnts how much the tank has to travel based on previous offset and dir
 	//just indicates the current position of the tank
 	float tankoffset, tankangle, topangle, cannonangle;
 	tank();
@@ -28,16 +28,17 @@ public:
 	void drawwheelcover(float tempx,float tempy, float tempz);
 	void drawchain(float xoffset,int pos);
 	void drawrims();
-	void spawn(int pos);
-	void movetank(float offset);
-	void turntank(float angle);
+	void spawn();
+	void bluecube(float x, float y, float z);
+	//void movetank(float offset);
+	//void turntank(float angle);
 	void tiltcannon(float angle);
 	void turntop(float angle);
 	void output_specs();
-	void setposition(float x, float y, float z); 
-	void reshape();
+	//void setposition(float x, float y, float z); 
+	//void reshape();
 };
-class position {
+/*class position {
 public:
 	float x, y, z;
 	position(float px,  float py, float pz):x(px),y(py),z(pz){}
@@ -62,4 +63,4 @@ public:
 	static void print(position p) {
 		std::cout << "x : " <<p.x<< ", y : " << p.y << ", z : "<< p.z << std::endl;
 	}
-};
+};*/

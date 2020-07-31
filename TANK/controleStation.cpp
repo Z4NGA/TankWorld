@@ -1,11 +1,19 @@
 #include "controleStation.h"
 controleStation::controleStation() {
+	opengateangle = 0; opengateoffset = 0;
+	closedgateangle = 0; closedgateoffset = 0;
+	currentgateangle = 0; currentgateoffset = 0;
+	isopen = false; isclosed = true;
 	type = "controlestation";
 	xoffset = 0; yoffset = 0; zoffset = 0;
 	usable = false;
 	inrange = false;
 }
 controleStation::controleStation(float x, float y, float z) {
+	opengateangle = 90; opengateoffset = -0.9*x;
+	closedgateangle = 0.; closedgateoffset=0.;
+	currentgateangle = 0.; currentgateoffset = 0.;
+	isopen = false; isclosed = true; 
 	type = "controlestation";
 	xLen = x;
 	yLen = y;
@@ -19,7 +27,10 @@ void controleStation::spawn() {
 	glPopMatrix();
 	glPushMatrix();
 	glTranslatef(0. + xoffset, yLen * 0.5 + yoffset, 0. + zoffset);
+
+	glTranslatef(currentgateoffset, 0., 0.);
 	drawlargegate();
+	glTranslatef(-currentgateoffset, 0., 0.);
 	//translation
 	glTranslatef(-0.5*xLen, -0.35*yLen, -0.3 * zLen);//0.15
 	drawminigate();
@@ -37,7 +48,16 @@ void controleStation::drawminigate() {
 	//front consisting from 2 parts
 	cube(tempx, tempy, tempz, gate_frontback);
 	glTranslatef(tempx / 2. + xLen / 2., tempy / 4., 0.);
+	//bar
+	glTranslatef(-xLen / 2., 0., 0.);
+	glRotatef(currentgateangle, 0., 0., 1.);
+	glTranslatef(xLen/2., 0., 0.);
 	cube(xLen, tempy/4., tempz/8., gatebar_texture);
+	//reset
+	glTranslatef(-xLen / 2., 0., 0.);
+	glRotatef(-currentgateangle, 0., 0.,1.);
+	glTranslatef(xLen / 2., 0., 0.);
+	
 	glTranslatef(-tempx / 2. - xLen / 2., -tempy / 4., 0.);
 }
 void controleStation::drawlargegate() {
@@ -148,4 +168,27 @@ void controleStation::drawlargegate() {
 	//	glVertex3f(tempy/2., -tempy / 2., tempz / 2.);
 	//	glVertex3f(tempy/2., -tempy / 2., -tempz / 2.);
 	//glEnd();
+}
+void controleStation::opengate() {
+	if (!isopen) {
+		isclosed = false;
+		if (currentgateangle != opengateangle)
+			currentgateangle += (float)(opengateangle - currentgateangle) / (float)50.;
+		if (currentgateoffset != opengateoffset)
+			currentgateoffset += (float)(opengateoffset - currentgateoffset) /(float) 75.;
+		if (currentgateangle == opengateangle) 
+			isopen = true; 
+	}
+}
+void controleStation::closegate() {
+	if (!isclosed) {
+		isopen = false;
+		if (currentgateangle != closedgateangle)
+		currentgateangle += (float)(closedgateangle - currentgateangle) / (float)50.;
+		if (currentgateoffset != closedgateoffset)
+		currentgateoffset += (float)(closedgateoffset - currentgateoffset) / (float)75.;
+		if (currentgateangle == closedgateangle) {
+			isclosed = true; 
+		}
+	}
 }

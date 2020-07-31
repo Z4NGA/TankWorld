@@ -18,7 +18,7 @@
 #include "Aircraft.h"
 #include <math.h>
 #define M_PI acos(-1.)
-#define all_textures 0.32
+#define all_textures 0.34
 
 //textures should be front / right / back / left /top /bot
 
@@ -46,7 +46,7 @@ std::vector<float> xdebug {50,150,300};
 std::vector<float> zdebug ;
 GLuint tex_2d,boxtx, redboxtx; //box textures
 GLuint green, blue, grey, yellow; //tank textures
-GLuint sky1, ground1, wall1;//set of textures scene1 
+GLuint sky1, ground1, wall1,skynight,ground6;//set of textures scene1 
 GLuint sky2, ground2, wall2;//set of textures scene2 
 GLuint sky3, ground3, wall3;//set of textures scene3 
 GLuint menubg, play, controls, credits, options, quit,cursor ,pausebg , cont ,deathbg,retry;//menu textures
@@ -80,23 +80,28 @@ void loadtext() {
 	///  LOADING game scenes TEXTURES
 	///
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
-	wall1 = SOIL_load_OGL_texture("wall.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	wall1 = SOIL_load_OGL_texture("wall.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS | SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
 	ground1 = SOIL_load_OGL_texture("groundbetter.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
 	sky1 = SOIL_load_OGL_texture("sky800.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
-	wall2 = SOIL_load_OGL_texture("wall2.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	wall2 = SOIL_load_OGL_texture("wall2.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS | SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
 	ground2 = SOIL_load_OGL_texture("ground2.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
 	sky2 = SOIL_load_OGL_texture("sky2.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
-	wall3 = SOIL_load_OGL_texture("wall3.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	wall3 = SOIL_load_OGL_texture("wall3.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS | SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
 	ground3 = SOIL_load_OGL_texture("ground3.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
 	sky3 = SOIL_load_OGL_texture("sky3.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	ground6 = SOIL_load_OGL_texture("ground6.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS | SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	skynight = SOIL_load_OGL_texture("skynight1.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS | SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	//used clamping to clone pixels
 	///
 	///  LOADING MENU TEXTURES
 	///
@@ -153,14 +158,19 @@ void Init()
 	//tex_2d = SOIL_load_OGL_texture("TREE1.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
 		//SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	//textures.push_back(tex_2d);
+	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHTING);
+	GLfloat light_position[] = { 1.0, 15.0, 1.0, 0.0 };
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+	glEnable(GL_COLOR_MATERIAL);
+	//glEnable(GL_NORMALIZE);
+
+
 	glEnable(GL_DEPTH_TEST);
 	glClearColor(0., 0., 0., 1.);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	/*glEnable(GL_CULL_FACE);
-	glFrontFace(GL_CCW);
-	glCullFace(GL_BACK);
-	*/
+
 }
 
 void drawGrid() {
@@ -372,16 +382,17 @@ int main(int argc, char** argv)
 	b2->setposition(1., 0., 0.);
 	b3 = new box(0.5, 0.5, 0.5);
 	b3->setposition(1., 0., 2.);
-	t = new tank(1.4, 0.8, 1.3);
-	t->setposition(1., 0., 2.);
+	t = new tank(3.4, 1.8, 3.3);
+	t->setposition(15, 0., 4);
 	tent = new Tent(3.4, 2.2, 3.6);
 	tent->setposition(-4., 0., -2.);
-	cs = new controleStation(3.0, 2.0, 1.);
-	cs->setposition(4.,0.,-2.);
+	cs = new controleStation(4.0, 2.0, 1.);
+	cs->setposition(20,0.,10);
 	heli = new Aircraft(7., 2., 1., "helicopter");
 	heli->setposition(4., 0., 1.);
 	
 	//adding gameobjects
+	//ge->addObjecttocurrentscene(t);
 	ge->addObjecttocurrentscene(b);
 	ge->addObjecttocurrentscene(b2);
 	ge->addObjecttocurrentscene(b3);

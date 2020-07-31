@@ -4,6 +4,7 @@
 #include <GL/freeglut.h>
 #include "GameObject.h"
 #include "Scene.h"
+extern GLuint skynight, ground6;
 extern GLuint ground1, sky1, wall1;
 extern GLuint ground2, sky2, wall2;
 extern GLuint ground3, sky3, wall3;
