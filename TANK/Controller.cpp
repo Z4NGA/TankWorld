@@ -104,22 +104,32 @@ void Controller::keyboardfunc(unsigned char key, int x, int y) {
 		
 		if (engineincontrol->current_scene->name._Equal("pause")) { //pause menu handler
 			switch (key) {
-				case 27:
-					engineincontrol->backtogame();
-					break;
-				case 13 ://32 is the space bar
-					std::cout << "u pressed enter\n";
-					selectbasedoncursor();
-					break;
-				case 'c':
-					engineincontrol->backtogame();
-					break;
-				case 'o':
-					engineincontrol->displayoptions();
-					break;
-				case 'q'://debug
-					exit(0);
-					break;
+			case 27:
+				engineincontrol->backtogame();
+				break;
+			case 13://32 is the space bar
+				std::cout << "u pressed enter\n";
+				selectbasedoncursor();
+				break;
+			case 'c':
+				engineincontrol->backtogame();
+				break;
+			case 'o':
+				engineincontrol->displayoptions();
+				break;
+			case 'q'://debug
+				exit(0);
+				break;
+			}
+		}
+		else if (engineincontrol->current_scene->name._Equal("controls")) { //pause menu handler
+			switch (key) {
+			case 27:
+				engineincontrol->displaystartmenu();
+				break;
+			case 'b':
+				engineincontrol->displaystartmenu();
+				break;
 			}
 		}
 		else if (engineincontrol->current_scene->name._Equal("main")) { //main menu handler
@@ -254,7 +264,8 @@ void Controller::noclick_motion(int x, int y) {
 			//centerx = float(x - 300.) / (float)xdebug.at(xdebug.size()-1);
 			centery = -float(y - (Height / 2.)) / 50.;
 			float zaxisangle = ((float(x) - float(Width / 2.)) / (float)(Width / 2.)) * 180. + 90;
-			engineincontrol->controlled_object->rotateobject(0., 180-angle, 0.);
+			if(engineincontrol->controlled_object->type._Equal("tank")) engineincontrol->controlled_object->rotateobject(0., - angle, 0.);
+			else engineincontrol->controlled_object->rotateobject(0., 180-angle, 0.);
 			std::cout << "\033[34mCenterx = " << centerx << " .\033[0m\n";
 			std::cout << "\033[34mCenterz = " << centerz << " .\033[0m\n";
 		}
@@ -284,6 +295,9 @@ void Controller::noclick_motion(int x, int y) {
 			if (y < (float)Height / 3.) engineincontrol->current_scene->changecursorposition(1);
 			else if (y < (2. * (float)Height / 3.)) engineincontrol->current_scene->changecursorposition(2);
 			else  engineincontrol->current_scene->changecursorposition(3);
+		}
+		else if (engineincontrol->current_scene->name._Equal("controls")) { //not quite yet
+			if (y > (2*(float)Height / 3.)) engineincontrol->current_scene->changecursorposition(1);
 		}
 	}
 }
@@ -353,6 +367,10 @@ void Controller::selectbasedoncursor() {
 			exit(0);
 			break;
 		}
+	}
+	else if (engineincontrol->current_scene->name._Equal("controls")) {
+		if(engineincontrol->current_scene->cursorposition==1)
+			engineincontrol->displaystartmenu();
 	}
 }
 void Controller::displaydetectionrange() {

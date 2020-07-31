@@ -6,7 +6,8 @@
 #include <vector>
 #define MAIN_MENU 0
 #define PAUSE 1
-#define END 2 
+#define CONTROLS 2
+#define END 3 
 #define BASE_SCENE 0
 #define BEACH_SCENE 1 
 #define FOREST_SCENE 2 
@@ -37,6 +38,7 @@ public:
 	void startgame();
 	void onpause(); 
 	void endgame();
+	void displaystartmenu();
 	void displaycontrols();
 	void displaycredits();
 	void displayoptions();

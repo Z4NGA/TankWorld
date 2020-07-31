@@ -18,7 +18,7 @@
 #include "Aircraft.h"
 #include <math.h>
 #define M_PI acos(-1.)
-#define all_textures 0.34
+#define all_textures 0.36
 
 //textures should be front / right / back / left /top /bot
 
@@ -36,7 +36,8 @@ controleStation* cs;
 Aircraft* heli;
 //base_scene* base; 
 GameEngine* ge;
-Scene* mainmenu; 
+Scene* mainmenu;
+Scene* controlsmenu;
 Scene* base;
 Scene* beach;
 Scene* forest;
@@ -50,6 +51,7 @@ GLuint sky1, ground1, wall1,skynight,ground6;//set of textures scene1
 GLuint sky2, ground2, wall2;//set of textures scene2 
 GLuint sky3, ground3, wall3;//set of textures scene3 
 GLuint menubg, play, controls, credits, options, quit,cursor ,pausebg , cont ,deathbg,retry;//menu textures
+GLuint controlsbg, back;//controls texture
 GLuint useobject; //game ui textures
 GLuint gate_frontback,gatewall, gatebar_texture; //controller textures
 GLuint metal,alum;
@@ -128,6 +130,15 @@ void loadtext() {
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
 	retry = SOIL_load_OGL_texture("retry.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	/// <summary>
+	/// LOADING CONTROLS MENU TEXTURE
+	/// </summary>
+	
+	controlsbg = SOIL_load_OGL_texture("controlsbg.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	back = SOIL_load_OGL_texture("back.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+
 	/// <summary>
 	///  LOADING GAME UI TEXTURES
 	/// </summary>
@@ -367,14 +378,16 @@ int main(int argc, char** argv)
 	beach = new gameScene("beach", "game_scene");
 	forest = new gameScene("forest","game_scene");
 	mainmenu = new menuScene("main", "menu_scene");
+	controlsmenu = new menuScene("controls", "menu_scene");
 	pause = new menuScene("pause", "menu_scene");
 	death = new menuScene("death","menu_scene");
 	ge->addgamescene(base);
 	ge->addgamescene(beach);
 	ge->addgamescene(forest);
-	ge->addmenuscene(mainmenu);
-	ge->addmenuscene(pause);
-	ge->addmenuscene(death);
+	ge->addmenuscene(mainmenu);//1
+	ge->addmenuscene(pause);//2
+	ge->addmenuscene(controlsmenu);//3
+	ge->addmenuscene(death);//4
 	ge->setCurrentScene(base);
 	//creating gameobjects
 	b = new box(0.5, 0.5, 0.5);

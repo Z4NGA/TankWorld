@@ -3,7 +3,7 @@
 #include <GL/freeglut.h>
 #include <vector>
 #include <string>
-extern GLuint menubg, play, controls, credits, options, quit,cursor,deathbg,cont,pausebg,retry;
+extern GLuint menubg, play, controls, credits, options, quit,cursor,deathbg,cont,pausebg,retry,controlsbg,back;
 class menuScene :  public Scene
 {
 public : 

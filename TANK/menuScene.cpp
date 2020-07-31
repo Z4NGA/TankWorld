@@ -43,6 +43,18 @@ void menuScene::drawbackground() {
 		glEnd();
 		glDisable(GL_TEXTURE_2D);
 	}
+	else if (name._Equal("controls")) {
+		glBindTexture(GL_TEXTURE_2D, controlsbg);
+		glEnable(GL_TEXTURE_2D);
+		glBegin(GL_POLYGON);
+		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+		glTexCoord2d(0., 0.); glVertex3f(-0.95, -0.7, -1.01);
+		glTexCoord2d(0., 1.); glVertex3f(-0.95, 0.7, -1.01);
+		glTexCoord2d(1., 1.); glVertex3f(0.95, 0.7, -1.01);
+		glTexCoord2d(1., 0.); glVertex3f(0.95, -0.7, -1.01);
+		glEnd();
+		glDisable(GL_TEXTURE_2D);
+	}
 	else {
 		glBindTexture(GL_TEXTURE_2D, deathbg);
 		glEnable(GL_TEXTURE_2D);
@@ -149,6 +161,19 @@ void menuScene::drawbuttons() {
 		glEnd();
 		glDisable(GL_TEXTURE_2D);
 	}
+	else if (name._Equal("controls")) {
+		//quit button		
+		glBindTexture(GL_TEXTURE_2D, back);
+		glEnable(GL_TEXTURE_2D);
+		glBegin(GL_POLYGON);
+		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+		glTexCoord2d(0., 0.); glVertex3f(-0.95, -0.7, -1);
+		glTexCoord2d(0., 1.); glVertex3f(-0.95, -0.7 + (float)(1.4 / 5), -1);
+		glTexCoord2d(1., 1.); glVertex3f(0.95, -0.7 + (float)(1.4 / 5), -1);
+		glTexCoord2d(1., 0.); glVertex3f(0.95, -0.7, -1);
+		glEnd();
+		glDisable(GL_TEXTURE_2D);
+	}
 	else {
 		//retry button		
 		glBindTexture(GL_TEXTURE_2D, retry);
@@ -175,6 +200,20 @@ void menuScene::drawcursor() {
 		glTexCoord2d(0., 1.); glVertex3f(-0.95, 0.7 - cursorposition * (float)(1.4 / nrofbuttons), -0.99);
 		glTexCoord2d(1., 1.); glVertex3f(0.95, 0.7 - cursorposition * (float)(1.4 / nrofbuttons), -0.99);
 		glTexCoord2d(1., 0.); glVertex3f(0.95, 0.7- (cursorposition - 1) * (float)(1.4 / nrofbuttons), -0.99);
+		glEnd();
+		glDisable(GL_TEXTURE_2D);
+	}
+	else if (name._Equal("controls")) {
+		if (cursorposition < 1) cursorposition = 1;
+		if (cursorposition >nrofbuttons) cursorposition = nrofbuttons;
+		glBindTexture(GL_TEXTURE_2D, cursor);
+		glEnable(GL_TEXTURE_2D);
+		glBegin(GL_POLYGON);
+		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+		glTexCoord2d(0., 0.); glVertex3f(-0.95, -0.7, -0.99);
+		glTexCoord2d(0., 1.); glVertex3f(-0.95, -0.7 + (float)(1.4 / 5), -0.99);
+		glTexCoord2d(1., 1.); glVertex3f(0.95, -0.7 + (float)(1.4 / 5), -0.99);
+		glTexCoord2d(1., 0.); glVertex3f(0.95, -0.7, -0.99);
 		glEnd();
 		glDisable(GL_TEXTURE_2D);
 	}
