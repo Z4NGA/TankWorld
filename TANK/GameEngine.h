@@ -8,6 +8,10 @@
 #define PAUSE 1
 #define CONTROLS 2
 #define END 3 
+#define OPTIONS 4
+#define VIDEO 5 //to be implemented
+#define KEYBINDING 6 //to be implemented
+#define AUDIO 7 //to be implemented
 #define BASE_SCENE 0
 #define BEACH_SCENE 1 
 #define FOREST_SCENE 2 
@@ -17,6 +21,7 @@ class GameEngine
 public:
 	Scene* current_scene; 
 	bool isusing,hasobjectinrange; 
+	bool gamestarted = false;
 	std::vector<Scene*> game_scenes; 
 	std::vector<Scene*> menu_scenes;
 	GameObject* controlled_object;
@@ -42,6 +47,9 @@ public:
 	void displaycontrols();
 	void displaycredits();
 	void displayoptions();
+	void displayvideo();
+	void displaykeybindings();
+	void displayaudio();
 	void backtogame();
 
 };

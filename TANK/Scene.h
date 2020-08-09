@@ -6,6 +6,8 @@ class Scene
 public:
 	std::string name,type;
 	int cursorposition=1 ,nrofbuttons=0;
+	int current_res, current_qual; //menu scene
+	bool vsync; //menu scene
 	GameObject* controlled_object;
 	std::vector<GameObject*> scene_objects;
 	Scene();
@@ -16,5 +18,8 @@ public:
 	virtual void decrementcursorposition() {}
 	virtual void changecursorposition(int position) {}
 	virtual void displayinrangeui(){}
+	virtual void changeres(int x){}
+	virtual void changequal(int x){}
+	virtual void changevsync(){}
 };
 

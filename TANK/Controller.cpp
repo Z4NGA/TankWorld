@@ -13,6 +13,26 @@ void Controller::resetcenterpos() {
 void Controller::setcenterpos(float x , float y, float z) {
 	centerx = x; centery = y; centerz = z;  //defines where the cam looks
 }
+void Controller::Reshape(int width, int height)
+{
+	// Matrix fuer Transformation : Frustum?>viewport
+	glMatrixMode(GL_PROJECTION);
+	// Aktuelle Transformation s?Matrix zuruecksetzen
+	glLoadIdentity();
+	// Viewport definieren
+	glViewport(0, 0, width, height);
+	// Frustum definieren (siehe unten)
+	gluPerspective(70., (float)width / (float)height, 0.01, 1000.);
+	//glOrtho(-1., 1., -1., 1., 0.001, 1000.0);
+	//glTranslatef(camZpos, camYpos, camZpos);
+	//gluPerspective(45., 1., 0.1, 10.0);
+	// Matrix fuer Modellierung / Viewing
+	glMatrixMode(GL_MODELVIEW);
+
+
+	// Hier finden die Reaktionen auf eine Veränderung der Größe des 
+	// Graphikfensters statt
+}
 //bound function maybe passed into the callack function
 void Controller::keyboardfunc(unsigned char key, int x, int y) {
 	
@@ -127,6 +147,10 @@ void Controller::keyboardfunc(unsigned char key, int x, int y) {
 			case 'o':
 				engineincontrol->displayoptions();
 				break;
+			/*case 'f' : 
+				Reshape(1200, 900);
+				glutReshapeWindow(1200, 900);
+				break;*/
 			case 'q'://debug
 				exit(0);
 				break;
@@ -302,7 +326,32 @@ void Controller::noclick_motion(int x, int y) {
 	}
 	else {
 		//mouse will be used to make hover effect over the buttons while menu_scene
-		if(engineincontrol->current_scene->name._Equal("main")){
+		if (engineincontrol->current_scene->name._Equal("video")) {
+			//std::cout << "current scene is video scene! xpos is : "<<x<<" ,ypos is : "<<y<<
+			//	" \n boudry 1 is <="<< (float)(245. / 800.) * width<< " , boudry 2 is >=" << (float)(165. / 800.) * width<<"\n";
+			if (x <=(float)(245./800.)*width && x >= (float)(165. / 800.) * width) {
+				//std::cout << "first x pos\n";
+				if (y <= (float)(165. / 600.) * height && y >= (float)(100. / 600.) * height) engineincontrol->current_scene->changecursorposition(1);
+				if (y <= (float)(315. / 600.) * height && y >= (float)(250. / 600.) * height) engineincontrol->current_scene->changecursorposition(2);
+				if (y <= (float)(465. / 600.) * height && y >= (float)(400. / 600.) * height) engineincontrol->current_scene->changecursorposition(3);
+			}
+			else if (x <= (float)(600. / 800.) * width && x >= (float)(520. / 800.) * width) {
+				//std::cout << "second x pos\n";
+				if (y <= (float)(165. / 600.) * height && y >= (float)(100. / 600.) * height) engineincontrol->current_scene->changecursorposition(4);
+				if (y <= (float)(315. / 600.) * height && y >= (float)(250. / 600.) * height) engineincontrol->current_scene->changecursorposition(5);
+				if (y <= (float)(465. / 600.) * height && y >= (float)(400. / 600.) * height) engineincontrol->current_scene->changecursorposition(6);
+			}
+			else if (y>=(4*height/5))  engineincontrol->current_scene->changecursorposition(7);
+		}
+		else{
+			for (int i = 1; i <= engineincontrol->current_scene->nrofbuttons; i++) {
+			if (y < i * (float)Height / engineincontrol->current_scene->nrofbuttons) {
+				engineincontrol->current_scene->changecursorposition(i);
+				break;
+			}
+		}
+		}
+		/*if(engineincontrol->current_scene->name._Equal("main")){
 			if (y < (float)Height / 5.) engineincontrol->current_scene->changecursorposition(1);
 			else if (y < (2. * (float)Height / 5.)) engineincontrol->current_scene->changecursorposition(2);
 			else if (y < (3. * (float)Height / 5.)) engineincontrol->current_scene->changecursorposition(3);
@@ -316,7 +365,7 @@ void Controller::noclick_motion(int x, int y) {
 		}
 		else if (engineincontrol->current_scene->name._Equal("controls")) { //not quite yet
 			if (y > (2*(float)Height / 3.)) engineincontrol->current_scene->changecursorposition(1);
-		}
+		}*/
 	}
 }
 
@@ -389,6 +438,60 @@ void Controller::selectbasedoncursor() {
 	else if (engineincontrol->current_scene->name._Equal("controls")) {
 		if(engineincontrol->current_scene->cursorposition==1)
 			engineincontrol->displaystartmenu();
+	}
+	else if (engineincontrol->current_scene->name._Equal("options")) {
+		switch (engineincontrol->current_scene->cursorposition)
+		{
+		case 1:
+			engineincontrol->displayvideo();
+			break;
+		case 2:
+			engineincontrol->displaykeybindings();
+			break;
+		case 3:
+			engineincontrol->displayaudio();
+			break;
+		case 4:
+			if (engineincontrol->gamestarted) engineincontrol->onpause();
+			else engineincontrol->displaystartmenu();
+			break;
+		}
+	}
+	else if (engineincontrol->current_scene->name._Equal("video")) {
+		switch (engineincontrol->current_scene->cursorposition)
+		{
+		case 1:
+			engineincontrol->current_scene->changeres(-1);
+			if (engineincontrol->current_scene->current_res == 0) width = 800, height = 600;
+			else if (engineincontrol->current_scene->current_res == 1) width = 1200, height = 900;
+			else width = 1600, height = 1200;
+			Reshape(width, height);
+			glutReshapeWindow(width, height);
+			break;
+		case 2:
+			engineincontrol->current_scene->changequal(-1);
+			break;
+		case 3:
+			engineincontrol->current_scene->changevsync();
+			break;
+		case 4:
+			engineincontrol->current_scene->changeres(1);
+			if (engineincontrol->current_scene->current_res == 0) width = 800, height = 600;
+			else if (engineincontrol->current_scene->current_res == 1) width = 1200, height = 900;
+			else width = 1600, height = 1200;
+			Reshape(width, height);
+			glutReshapeWindow(width, height);
+			break;
+		case 5:
+			engineincontrol->current_scene->changequal(1);
+			break;
+		case 6:
+			engineincontrol->current_scene->changevsync();
+			break;
+		case 7:
+			engineincontrol->displayoptions();
+			break;
+		}
 	}
 }
 void Controller::displaydetectionrange() {

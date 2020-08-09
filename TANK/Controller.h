@@ -16,7 +16,8 @@ public:
 	float detectionrange = 1.; // will allow the use of different objects
 	GameEngine* engineincontrol; 
 	GameObject* controlled_object; 
-
+	int height=600, width=800; 
+	void Reshape(int width, int height);
 	Controller(GameEngine* p);
 	void noclick_motion(int x, int y);
 	void onclick_listner(int button, int state, int x, int y);

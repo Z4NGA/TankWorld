@@ -122,25 +122,43 @@ void GameEngine::changescene(int i) {
 }
 void GameEngine::startgame() {
 	if (game_scenes.empty()) std::cerr << "ERROR !! No game scenes are created !!\n";
-	else setCurrentScene(game_scenes.at(BASE_SCENE));
+	else {
+		setCurrentScene(game_scenes.at(BASE_SCENE)); 
+		gamestarted = true;
+	}
 }
 void GameEngine::displaystartmenu() {
-	if (menu_scenes.size() < 1) std::cerr << "ERROR !! Main menu scene is missing !!\n";
+	if (menu_scenes.size() < MAIN_MENU+1) std::cerr << "ERROR !! Main menu scene is missing !!\n";
 	else setCurrentScene(menu_scenes.at(MAIN_MENU));
 }
 void GameEngine::onpause() {
-	if (menu_scenes.size() < 2) std::cerr << "ERROR !! Pause scene is missing !!\n";
+	if (menu_scenes.size() < PAUSE+1) std::cerr << "ERROR !! Pause scene is missing !!\n";
 	else setCurrentScene(menu_scenes.at(PAUSE));
 }
 void GameEngine::backtogame() {
 	setCurrentScene(game_scenes.at(BASE_SCENE));
 }
 void GameEngine::displaycontrols() {
-	if (menu_scenes.size() < 3) std::cerr << "ERROR !! controls scene is missing !!\n";
+	if (menu_scenes.size() < CONTROLS+1) std::cerr << "ERROR !! controls scene is missing !!\n";
 	else setCurrentScene(menu_scenes.at(CONTROLS));
 }
+
+void GameEngine::displayvideo() {
+	if (menu_scenes.size() < VIDEO+1) std::cerr << "ERROR !! video scene is missing !!\n";
+	else setCurrentScene(menu_scenes.at(VIDEO));
+}
+
+void GameEngine::displaykeybindings() {
+	if (menu_scenes.size() < KEYBINDING+1) std::cerr << "ERROR !! keybindings scene is missing !!\n";
+	else setCurrentScene(menu_scenes.at(KEYBINDING));
+}
+
+void GameEngine::displayaudio() {
+	if (menu_scenes.size() < AUDIO+1) std::cerr << "ERROR !! audio scene is missing !!\n";
+	else setCurrentScene(menu_scenes.at(AUDIO));
+}
 void GameEngine::endgame() {
-	if (menu_scenes.size() < 4) std::cerr << "ERROR !! End scene is missing !!\n";
+	if (menu_scenes.size() < END+1) std::cerr << "ERROR !! End scene is missing !!\n";
 	else setCurrentScene(menu_scenes.at(END));
 }
 
@@ -148,5 +166,6 @@ void GameEngine::displaycredits() {
 
 }
 void GameEngine::displayoptions() {
-
+	if (menu_scenes.size() < OPTIONS + 1) std::cerr << "ERROR !! options scene is missing !!\n";
+	else setCurrentScene(menu_scenes.at(OPTIONS));
 }
