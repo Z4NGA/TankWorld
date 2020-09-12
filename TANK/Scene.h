@@ -5,6 +5,7 @@ class Scene
 {
 public:
 	std::string name,type;
+	int NR_LEVELS = 2; //for level_selector only
 	int cursorposition=1 ,nrofbuttons=0;
 	int current_res, current_qual; //menu scene
 	bool vsync; //menu scene

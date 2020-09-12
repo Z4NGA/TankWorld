@@ -131,6 +131,21 @@ void GameEngine::displaystartmenu() {
 	if (menu_scenes.size() < MAIN_MENU+1) std::cerr << "ERROR !! Main menu scene is missing !!\n";
 	else setCurrentScene(menu_scenes.at(MAIN_MENU));
 }
+void GameEngine::selectlevel() {
+	if (menu_scenes.size() < LEVEL_SELECTOR + 1) std::cerr << "ERROR !! No Level to select !!\\n";
+	else setCurrentScene(menu_scenes.at(LEVEL_SELECTOR));
+}
+void GameEngine::startlevel(int level_index) {
+	//starts a specific level according to the index
+	if (game_scenes.empty()) std::cerr << "ERROR !! No game scenes are created !!\n";
+	else if(level_index<game_scenes.size()){
+		setCurrentScene(game_scenes.at(level_index));
+		gamestarted = true;
+	}
+	else {
+		std::cerr << "ERROR !! Game_scene Nr. "<<level_index<<" Can Not Be Found !!\n";
+	}
+}
 void GameEngine::onpause() {
 	if (menu_scenes.size() < PAUSE+1) std::cerr << "ERROR !! Pause scene is missing !!\n";
 	else setCurrentScene(menu_scenes.at(PAUSE));

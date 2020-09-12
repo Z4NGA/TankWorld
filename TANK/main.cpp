@@ -18,7 +18,7 @@
 #include "Aircraft.h"
 #include <math.h>
 #define M_PI acos(-1.)
-#define all_textures 0.51
+#define all_textures 0.55
 
 //textures should be front / right / back / left /top /bot
 
@@ -37,6 +37,7 @@ std::vector<Aircraft*> heli;
 //base_scene* base; 
 GameEngine* ge;
 Scene* mainmenu;
+Scene* levelselector; 
 Scene* controlsmenu;
 Scene* base;
 Scene* beach;
@@ -49,11 +50,13 @@ Scene* keybindingmenu;
 Scene* audiomenu;
 std::vector<float> xdebug {50,150,300};
 std::vector<float> zdebug ;
+GLuint loading_fg, loading_bar; //loading texture
 GLuint tex_2d,boxtx, redboxtx; //box textures
 GLuint green, blue, grey, yellow; //tank textures
 GLuint sky1, ground1, wall1,skynight,ground6;//set of textures scene1 
 GLuint sky2, ground2, wall2;//set of textures scene2 
 GLuint sky3, ground3, wall3;//set of textures scene3 
+GLuint level1, level2,level1_selected , level2_selected; //different level selector for the menu
 GLuint menubg, play, controls, credits, options, quit,cursor ,pausebg , cont ,deathbg,retry,smallcursor;//menu textures
 GLuint controlsbg, back;//controls texture
 GLuint keybindings, audio, video;//optionmenu textures
@@ -64,7 +67,48 @@ GLuint metal,alum,blackalum, orangealum;
 int h, w;
 float CamXpos=0., camYpos=1., camZpos=0.; //defines where the cam stands
 float centerx=0.7, centery= 0.9, centerz=0.;  //defines where the cam looks
+float loading_offset = 0.;
+void display_loading_screen() {
+	loading_offset += (float)(1.05 + 0.75) / ((float)all_textures*100);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//draws the fg
+	
+
+	glBindTexture(GL_TEXTURE_2D, loading_bar);
+	glEnable(GL_TEXTURE_2D);
+		glBegin(GL_POLYGON);
+		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+			glTexCoord2d(0., 0.); glVertex3f(-1.05 - 0.75 - 1.05+loading_offset, -0.7, -0.99);
+			glTexCoord2d(0., 1.); glVertex3f(-1.05 - 0.75 - 1.05 + loading_offset, 0.7, -0.99);
+			glTexCoord2d(1., 1.); glVertex3f(1.05 - 0.75 - 1.05 + loading_offset, 0.7, -0.99);
+			glTexCoord2d(1., 0.); glVertex3f(1.05 - 0.75 - 1.05 + loading_offset, -0.7, -0.99);
+		glEnd();
+	glDisable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, loading_fg);
+	glEnable(GL_TEXTURE_2D);
+		glBegin(GL_POLYGON);
+		glColor4f(1., 1., 1., 1.);
+			glTexCoord2d(0., 0.); glVertex3f(-1.05, -0.7, -1.0);
+			glTexCoord2d(0., 1.); glVertex3f(-1.05, 0.7, -1.0);
+			glTexCoord2d(1., 1.); glVertex3f(1.05, 0.7, -1.0);
+			glTexCoord2d(1., 0.); glVertex3f(1.05, -0.7, -1.0);
+		glEnd();
+	glDisable(GL_TEXTURE_2D);
+	glutSwapBuffers();
+	
+}
 void loadtext() {
+	//set the menu scene look
+	glPopMatrix();//pop the latest matrix on stack to modify if exist
+	glLoadIdentity();//reset the currently loaded matrix if it exists
+	gluLookAt(0., 0., 0., 0., 0., -1., 0., 1., 0.);//set the lookAt
+	glPushMatrix();
+	///
+	/// FIRST LOAD THE LOADING SCREEN
+	///
+	loading_fg = SOIL_load_OGL_texture("resources/menu/loading_fg.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y);
+	loading_bar = SOIL_load_OGL_texture("resources/menu/loading_bar.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	display_loading_screen();
 	/// <summary>
 	/// loading tank TEXTURES
 	/// </summary>
@@ -72,136 +116,201 @@ void loadtext() {
 	std::cout << "#### LOADING TEXTURES ! Please wait "<<(float)loadedtextures/all_textures<<"%\n";
 	green = SOIL_load_OGL_texture("resources/camogen/camogreen100.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	blue = SOIL_load_OGL_texture("resources/camogen/camoblue100.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	grey = SOIL_load_OGL_texture("resources/camogen/camogrey100.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	yellow = SOIL_load_OGL_texture("resources/camogen/camoyellow100.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	/// <summary>
 	/// loading boxes TEXTURES
-	/// </summary>
-	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	/// </summary>	
 	boxtx = SOIL_load_OGL_texture("resources/box.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	redboxtx = SOIL_load_OGL_texture("resources/redbox.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	///
 	///  LOADING game scenes TEXTURES
 	///
-	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
 	wall1 = SOIL_load_OGL_texture("resources/world/wall.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS | SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
+	display_loading_screen(); 
 	ground1 = SOIL_load_OGL_texture("resources/world/groundbetter.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
+	display_loading_screen(); 
 	sky1 = SOIL_load_OGL_texture("resources/world/sky800.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
+	display_loading_screen(); 
 	wall2 = SOIL_load_OGL_texture("resources/world/wall2.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS | SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
+	display_loading_screen(); 
 	ground2 = SOIL_load_OGL_texture("resources/world/ground2.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
+	display_loading_screen(); 
 	sky2 = SOIL_load_OGL_texture("resources/world/sky2.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
+	display_loading_screen(); 
 	wall3 = SOIL_load_OGL_texture("resources/world/wall3.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS | SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
+	display_loading_screen(); 
 	ground3 = SOIL_load_OGL_texture("resources/world/ground3.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
+	display_loading_screen(); 
 	sky3 = SOIL_load_OGL_texture("resources/world/sky3.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	display_loading_screen(); 
 	ground6 = SOIL_load_OGL_texture("resources/world/ground6.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS | SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen(); 
 	skynight = SOIL_load_OGL_texture("resources/world/skynight1.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS | SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	//used clamping to clone pixels
 	///
 	///  LOADING MENU TEXTURES
 	///
-	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
+	//loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
 	menubg = SOIL_load_OGL_texture("resources/menu/menubg.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
+	display_loading_screen(); 
 	play = SOIL_load_OGL_texture("resources/menu/play.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
+	display_loading_screen(); 
 	controls = SOIL_load_OGL_texture("resources/menu/controls.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
+	display_loading_screen(); 
 	credits = SOIL_load_OGL_texture("resources/menu/credits.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
+	display_loading_screen(); 
 	options = SOIL_load_OGL_texture("resources/menu/options.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
+	display_loading_screen(); 
 	quit = SOIL_load_OGL_texture("resources/menu/quit.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
+	display_loading_screen(); 
 	cursor = SOIL_load_OGL_texture("resources/menu/cursor.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen(); 
 	smallcursor = SOIL_load_OGL_texture("resources/menu/smallcursor.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	pausebg = SOIL_load_OGL_texture("resources/menu/pause.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
+	display_loading_screen();
 	cont = SOIL_load_OGL_texture("resources/menu/continue.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
+	display_loading_screen();
 	deathbg = SOIL_load_OGL_texture("resources/menu/deathbg.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n"; 
+	display_loading_screen();
 	retry = SOIL_load_OGL_texture("resources/menu/retry.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
+	level1 = SOIL_load_OGL_texture("resources/menu/level1.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
+	level2 = SOIL_load_OGL_texture("resources/menu/level2.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen(); 
+	level1_selected = SOIL_load_OGL_texture("resources/menu/level1_selected.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
+	level2_selected = SOIL_load_OGL_texture("resources/menu/level2_selected.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
+
 	/// <summary>
 	/// LOADING CONTROLS MENU TEXTURE
 	/// </summary>
 
 	controlsbg = SOIL_load_OGL_texture("resources/menu/controlsbg.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	back = SOIL_load_OGL_texture("resources/menu/back.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
+
 	/// <summary>
 		/// LOADING OPTIONS MENU TEXTURE
 		/// </summary>
 
 	video = SOIL_load_OGL_texture("resources/menu/video.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	keybindings = SOIL_load_OGL_texture("resources/menu/keybindings.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	audio = SOIL_load_OGL_texture("resources/menu/audio.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 
 	/// <summary>
 		/// LOADING VIDEO MENU TEXTURE
 		/// </summary>
 	videofg = SOIL_load_OGL_texture("resources/menu/videofg.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	res800 = SOIL_load_OGL_texture("resources/menu/800x600.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	res1200 = SOIL_load_OGL_texture("resources/menu/1200x900.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	res1600 = SOIL_load_OGL_texture("resources/menu/1600x1200.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	quality_low = SOIL_load_OGL_texture("resources/menu/low.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	quality_medium = SOIL_load_OGL_texture("resources/menu/medium.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	quality_high = SOIL_load_OGL_texture("resources/menu/high.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	vsync_on = SOIL_load_OGL_texture("resources/menu/on.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	vsync_off = SOIL_load_OGL_texture("resources/menu/off.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 
 	/// <summary>
 	///  LOADING GAME UI TEXTURES
 	/// </summary>
 	useobject = SOIL_load_OGL_texture("resources/menu/useobject.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	/// <summary>
 	/// LOADING GATE CONTROLLER TEXTURES
 	/// </summary>
 	gate_frontback = SOIL_load_OGL_texture("resources/gate/gate_texture.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	gatebar_texture = SOIL_load_OGL_texture("resources/gate/gatebar_texture.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	gatewall = SOIL_load_OGL_texture("resources/gate/gatewall.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
-	
+	display_loading_screen();
+
 	metal = SOIL_load_OGL_texture("resources/material/greenmetal.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT | SOIL_FLAG_TEXTURE_REPEATS);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	alum = SOIL_load_OGL_texture("resources/material/alum.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT | SOIL_FLAG_TEXTURE_REPEATS);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	blackalum = SOIL_load_OGL_texture("resources/material/blackalum.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT | SOIL_FLAG_TEXTURE_REPEATS);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 	orangealum = SOIL_load_OGL_texture("resources/material/orangealum.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT | SOIL_FLAG_TEXTURE_REPEATS);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
 
 	std::cout << "\033[0m";
 }
@@ -209,10 +318,17 @@ void loadtext() {
 
 void Init()
 {	
+	glEnable(GL_DEPTH_TEST);
+	glClearColor(0., 0., 0., 1.);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	//LOADING TEXTURES	
 	loadtext();
 	//tex_2d = SOIL_load_OGL_texture("TREE1.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
 		//SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	//textures.push_back(tex_2d);
+
 	glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHTING);
 	GLfloat light_position[] = { 1.0, 15.0, 1.0, 0.0 };
@@ -221,11 +337,9 @@ void Init()
 	//glEnable(GL_NORMALIZE);
 
 
-	glEnable(GL_DEPTH_TEST);
-	glClearColor(0., 0., 0., 1.);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+	
+	
 }
 
 void drawGrid() {
@@ -429,6 +543,7 @@ int main(int argc, char** argv)
 	videomenu = new menuScene("video", "menu_scene"); //to be
 	keybindingmenu = new menuScene("keybinding", "menu_scene"); //to be
 	audiomenu = new menuScene("audio", "menu_scene"); //to be impl
+	levelselector = new menuScene("level_selector", "menu_scene");
 	ge->addgamescene(base);//0
 	ge->addgamescene(beach);//1
 	ge->addgamescene(forest);
@@ -440,6 +555,7 @@ int main(int argc, char** argv)
 	ge->addmenuscene(videomenu);//5
 	ge->addmenuscene(keybindingmenu);//6
 	ge->addmenuscene(audiomenu);//7
+	ge->addmenuscene(levelselector);//8
 	ge->setCurrentScene(base);
 	//creating gameobjects
 	b = new box(0.5, 0.5, 0.5);

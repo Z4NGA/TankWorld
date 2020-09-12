@@ -11,6 +11,7 @@ menuScene::menuScene(std::string n, std::string t ){
 	else if (name._Equal("pause")) nrofbuttons = 3;
 	else if (name._Equal("options")) nrofbuttons = 4;
 	else if (name._Equal("video")) nrofbuttons = 7;
+	else if (name._Equal("level_selector")) nrofbuttons = NR_LEVELS + 1;
 	else nrofbuttons = 1;
 	cursorposition = nrofbuttons;
 }
@@ -23,7 +24,7 @@ void menuScene::display() {
 	drawcursor();
 }
 void menuScene::drawbackground() {
-	if (name._Equal("main")||name._Equal("options")||name._Equal("audio")) {
+	if (name._Equal("main")||name._Equal("options")||name._Equal("audio")||name._Equal("level_selector")) {
 		glBindTexture(GL_TEXTURE_2D, menubg);
 		glEnable(GL_TEXTURE_2D);
 		glBegin(GL_POLYGON);
@@ -300,6 +301,43 @@ void menuScene::drawbuttons() {
 		glEnd();
 		glDisable(GL_TEXTURE_2D);
 	}
+	else if (name._Equal("level_selector")) {
+	//back button		
+		glBindTexture(GL_TEXTURE_2D, back);
+		glEnable(GL_TEXTURE_2D);
+		glBegin(GL_POLYGON);
+		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+		glTexCoord2d(0., 0.); glVertex3f(-0.95, -0.7, -0.96);
+		glTexCoord2d(0., 1.); glVertex3f(-0.95, -0.7 + (float)(1.4 / 5), -0.96);
+		glTexCoord2d(1., 1.); glVertex3f(0.95, -0.7 + (float)(1.4 / 5), -0.96);
+		glTexCoord2d(1., 0.); glVertex3f(0.95, -0.7, -0.96);
+		glEnd();
+		glDisable(GL_TEXTURE_2D);
+	//level 1
+		if (cursorposition == 1) glBindTexture(GL_TEXTURE_2D, level1_selected);
+		else glBindTexture(GL_TEXTURE_2D, level1);
+		glEnable(GL_TEXTURE_2D);
+		glBegin(GL_POLYGON);
+		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+		glTexCoord2d(0., 0.); glVertex3f(-0.75, 0.1, -0.96);
+		glTexCoord2d(0., 1.); glVertex3f(-0.75, 0.5, -0.96);
+		glTexCoord2d(1., 1.); glVertex3f(-0.25, 0.5, -0.96);
+		glTexCoord2d(1., 0.); glVertex3f(-0.25, 0.1, -0.96);
+		glEnd();
+		glDisable(GL_TEXTURE_2D);
+	//level 2
+		if (cursorposition == 2) glBindTexture(GL_TEXTURE_2D, level2_selected);
+		else glBindTexture(GL_TEXTURE_2D, level2);
+		glEnable(GL_TEXTURE_2D);
+		glBegin(GL_POLYGON);
+		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+		glTexCoord2d(0., 0.); glVertex3f(0.25, 0.1, -0.96);
+		glTexCoord2d(0., 1.); glVertex3f(0.25, 0.5, -0.96);
+		glTexCoord2d(1., 1.); glVertex3f(0.75, 0.5, -0.96);
+		glTexCoord2d(1., 0.); glVertex3f(0.75, 0.1, -0.96);
+		glEnd();
+		glDisable(GL_TEXTURE_2D);
+	}
 	else {
 		//retry button		
 		glBindTexture(GL_TEXTURE_2D, retry);
@@ -363,10 +401,25 @@ void menuScene::drawcursor() {
 			glEnd();
 			glDisable(GL_TEXTURE_2D);
 		}
+		//implement the level selector
+	}
+	else if (name._Equal("level_selector")) {
+		if (cursorposition < 1) cursorposition = 1;
+		if (cursorposition > nrofbuttons) cursorposition = nrofbuttons;
+		glBindTexture(GL_TEXTURE_2D, cursor);
+		glEnable(GL_TEXTURE_2D);
+		glBegin(GL_POLYGON);
+		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+		glTexCoord2d(0., 0.); glVertex3f(-0.95, -0.7, -0.99);
+		glTexCoord2d(0., 1.); glVertex3f(-0.95, -0.7 + (float)(1.4 / 5), -0.99);
+		glTexCoord2d(1., 1.); glVertex3f(0.95, -0.7 + (float)(1.4 / 5), -0.99);
+		glTexCoord2d(1., 0.); glVertex3f(0.95, -0.7, -0.99);
+		glEnd();
+		glDisable(GL_TEXTURE_2D);
 	}
 	else if (name._Equal("controls")) {
 		if (cursorposition < 1) cursorposition = 1;
-		if (cursorposition >nrofbuttons) cursorposition = nrofbuttons;
+		if (cursorposition > nrofbuttons) cursorposition = nrofbuttons;
 		glBindTexture(GL_TEXTURE_2D, cursor);
 		glEnable(GL_TEXTURE_2D);
 		glBegin(GL_POLYGON);

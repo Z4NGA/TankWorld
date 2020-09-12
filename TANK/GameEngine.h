@@ -12,6 +12,7 @@
 #define VIDEO 5 //to be implemented
 #define KEYBINDING 6 //to be implemented
 #define AUDIO 7 //to be implemented
+#define LEVEL_SELECTOR 8 //implemented
 #define BASE_SCENE 0
 #define BEACH_SCENE 1 
 #define FOREST_SCENE 2 
@@ -44,6 +45,8 @@ public:
 	void onpause(); 
 	void endgame();
 	void displaystartmenu();
+	void selectlevel();
+	void startlevel(int level_index);
 	void displaycontrols();
 	void displaycredits();
 	void displayoptions();

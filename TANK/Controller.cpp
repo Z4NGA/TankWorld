@@ -343,6 +343,14 @@ void Controller::noclick_motion(int x, int y) {
 			}
 			else if (y>=(4*height/5))  engineincontrol->current_scene->changecursorposition(7);
 		}
+		else if (engineincontrol->current_scene->name._Equal("level_selector")) {
+			if (y >= 80 && y <= 255) {
+				if (x >= 65 && x <= 285) engineincontrol->current_scene->changecursorposition(1);
+				else if (x >= 515 && x <= 735) engineincontrol->current_scene->changecursorposition(2);
+			}
+			//else if(y) //should be implemented for more levels
+			else if (y >= (4 * height / 5))  engineincontrol->current_scene->changecursorposition(engineincontrol->current_scene->NR_LEVELS+1);
+		}
 		else{
 			for (int i = 1; i <= engineincontrol->current_scene->nrofbuttons; i++) {
 			if (y < i * (float)Height / engineincontrol->current_scene->nrofbuttons) {
@@ -405,7 +413,7 @@ void Controller::selectbasedoncursor() {
 		switch (engineincontrol->current_scene->cursorposition)
 		{
 		case 1:
-			engineincontrol->startgame();
+			engineincontrol->selectlevel();
 			break;
 		case 2:
 			engineincontrol->displaycontrols();
@@ -491,6 +499,14 @@ void Controller::selectbasedoncursor() {
 		case 7:
 			engineincontrol->displayoptions();
 			break;
+		}
+	}
+	else if (engineincontrol->current_scene->name._Equal("level_selector")) {
+		if (engineincontrol->current_scene->cursorposition < engineincontrol->current_scene->NR_LEVELS + 1) {
+			engineincontrol->startlevel(engineincontrol->current_scene->cursorposition-1);
+		}
+		else {
+			engineincontrol->displaystartmenu();
 		}
 	}
 }

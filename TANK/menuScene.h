@@ -4,8 +4,10 @@
 #include <vector>
 #include <string>
 #include <iostream>
+
 extern GLuint menubg, play, controls, credits, options, quit,cursor,deathbg,cont,pausebg,retry,controlsbg,back,video,keybindings,audio;
 extern GLuint videofg, res800, res1200, res1600, quality_low, quality_medium, quality_high, vsync_on, vsync_off,smallcursor;//video menu textures
+extern GLuint level1, level2, level1_selected, level2_selected;
 class menuScene :  public Scene
 {
 public : 
