@@ -11,11 +11,14 @@ class GameEngine;
 class Controller
 {
 public:
+	std::vector<std::string> keys{ "z", "s","up","down","left","right","x","e","space" };
 	float CamXpos , camYpos , camZpos ; //defines where the cam stands
 	float centerx , centery , centerz ; //defines where the cam looks
 	float detectionrange = 1.; // will allow the use of different objects
 	GameEngine* engineincontrol; 
 	GameObject* controlled_object; 
+	int isbound(std::string s);//returns movement code according to string / -1 if key is unbound
+	void action(int index); //executes a certain action according to the index given
 	int height=600, width=800; 
 	void Reshape(int width, int height);
 	Controller(GameEngine* p);

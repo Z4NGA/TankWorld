@@ -37,8 +37,12 @@ void Controller::Reshape(int width, int height)
 void Controller::keyboardfunc(unsigned char key, int x, int y) {
 	
 	if (engineincontrol->current_scene->type._Equal("game_scene")) {
+		if (key == 27)
+			engineincontrol->onpause();
+		else if (key == ' ') action(isbound("space"));
+		else { std::string temp; temp += key; action(isbound(temp)); }
 			// if the scene  is 3d game scene  ,cam will move
-		if (engineincontrol->isusing) { //when the player is using an object
+		/*if (engineincontrol->isusing) { //when the player is using an object
 			float xpos = (float)x;
 			float ypos = (float)y;
 			switch (key) {
@@ -127,7 +131,7 @@ void Controller::keyboardfunc(unsigned char key, int x, int y) {
 					break;
 			}
 			std::cout << key << " was pressed at " << xpos << " , " << ypos << std::endl;
-		}
+		}*/
 		//glutPostRedisplay();
 	}
 	else {// if the scene  is a menu scene 
@@ -189,6 +193,18 @@ void Controller::keyboardfunc(unsigned char key, int x, int y) {
 					break;
 			}
 		}
+		else if (engineincontrol->current_scene->name._Equal("keybinding")) {
+			if (key == 27)  engineincontrol->displayoptions();
+			else if (key == 13) engineincontrol->current_scene->changing_key = !engineincontrol->current_scene->changing_key;
+			else {
+				if (engineincontrol->current_scene->changing_key) {
+					std::string temp;  temp += key;
+					keys[engineincontrol->current_scene->cursorposition - 1] = temp;
+					engineincontrol->current_scene->keys[engineincontrol->current_scene->cursorposition - 1] = temp;
+					engineincontrol->current_scene->changing_key = false;
+				}	
+			}
+		}
 		else { //death screen handler
 			switch (key) {
 				case 'r':
@@ -201,11 +217,125 @@ void Controller::keyboardfunc(unsigned char key, int x, int y) {
 		}
 	}
 }
+int Controller::isbound(std::string s) {
+	for (int i = 0; i < keys.size(); i++) {
+		if (keys[i]._Equal(s)) return i;
+	}
+	return -1; 
+}
+void Controller::action(int index) {
+	if (engineincontrol->isusing) {
+		switch (index)
+		{
+		case 0://forward 0
+			engineincontrol->controlled_object->addoffsettoposition(0.065 * (centerx), 0., 0.065 * (centerz));
+			camZpos += 0.065 * (centerz);//camera position must be included when calculating the direction vector
+			CamXpos += 0.065 * (centerx);//so the player walks in a straight line towards middle of screen(crosshair)
+			break;
+		case 1:	// backward 1
+			engineincontrol->controlled_object->addoffsettoposition(-0.045 * (centerx), 0., -0.045 * (centerz));
+			camZpos -= 0.045 * (centerz);
+			CamXpos -= 0.045 * (centerx);
+			break;
+		case 2: // tilt up  2
+			if (engineincontrol->controlled_object->type._Equal("tank"))
+				engineincontrol->controlled_object->tiltcannon(2.);
+			break;
+		case 3: // fly/tilt down  3 
+			if (engineincontrol->controlled_object->generaltype._Equal("aircraft") || engineincontrol->controlled_object->generaltype._Equal("box"))
+			{
+				engineincontrol->controlled_object->addoffsettoposition(0., -0.065, 0.);
+				camYpos -= 0.065;
+			}
+			if (engineincontrol->controlled_object->type._Equal("tank"))
+				engineincontrol->controlled_object->tiltcannon(-2.);
+			break;
+		case 4: // turn top left 4
+			if (engineincontrol->controlled_object->type._Equal("tank"))
+				engineincontrol->controlled_object->turntop(2.);
+			break;
+		case 5: // turn top right 5
+			if (engineincontrol->controlled_object->type._Equal("tank"))
+				engineincontrol->controlled_object->turntop(-2.);
+			break;
+		case 6: // changescene  6
+			engineincontrol->changescene(BEACH_SCENE);
+			break;
+		case 7: // useobject 7
+			engineincontrol->controlled_object->turnedon = false;
+			engineincontrol->releasecontrolledobject();
+			break;
+		case 8: // fly 8 
+			if (engineincontrol->controlled_object->generaltype._Equal("aircraft") || engineincontrol->controlled_object->generaltype._Equal("box"))
+			{
+				engineincontrol->controlled_object->addoffsettoposition(0., 0.065, 0.);
+				camYpos += 0.065;
+			}
+			break;
+		default:
+			break;
+		}
+	}
+	else {//on foot
+		switch (index)
+		{
+		case 0://forward 0
+			//move toward the line of sight vector , means in direction of the person's sight
+			camZpos += 0.035 * (centerz);//camera position must be included when calculating the direction vector
+			CamXpos += 0.035 * (centerx);//so the player walks in a straight line towards middle of screen(crosshair)
+			break;
+		case 1:	// backward 1
+			camZpos -= 0.035 * (centerz);
+			CamXpos -= 0.035 * (centerx);
+			break;
+		case 2: // nothing  2
+			break;
+		case 3: // fly down  3 
+			camYpos -= 0.035;
+			break;
+		case 4: // nothing
+			break;
+		case 5: // nothing
+			break;
+		case 6: // changescene  6
+			engineincontrol->changescene(BEACH_SCENE);
+			break;
+		case 7: // useobject 7
+			if (engineincontrol->hasobjectinrange)
+			{
+				engineincontrol->setcontrolledobject(engineincontrol->objectinrange);
+				engineincontrol->controlled_object->turnedon = true;
+			}
+			break;
+		case 8: // fly 8 
+			camYpos += 0.035;
+			break;
+		default:
+			break;
+		}
+	}
+
+}
 void Controller::arrowfunc(int key, int x, int y) {// handles the special keys such as arrows
 	
 	if (engineincontrol->current_scene->type._Equal("game_scene")) {
+		
+		switch (key) {
+		case GLUT_KEY_UP:
+			action(isbound("up"));
+			break;
+		case GLUT_KEY_DOWN:
+			action(isbound("down"));
+			break;
+		case GLUT_KEY_LEFT:
+			action(isbound("left"));
+			break;
+		case GLUT_KEY_RIGHT:
+			action(isbound("right"));
+			break;
+		}
 		// if the scene  is 3d game scene  ,cam and object will be able to move
-		if (engineincontrol->isusing) { //when the player is using an object
+		/*if (engineincontrol->isusing) { //when the player is using an object
 			switch (key) {
 			case GLUT_KEY_UP:
 				std::cout << " ARROW_UP\n";
@@ -242,54 +372,64 @@ void Controller::arrowfunc(int key, int x, int y) {// handles the special keys s
 			switch (key) {
 			case GLUT_KEY_UP:
 				std::cout << " ARROW_UP\n";
-				/*t->tiltcannon(1);
-				b->movez(0.015);
-				b->iscolliding = iscolliding(b->getborder(), b2->getborder());
-				*/break;
+				break;
 			case GLUT_KEY_DOWN:
 				std::cout << " ARROW_DOWN\n";
 				camYpos -= 0.035;
-				/*t->tiltcannon(-1);
-				b->movez(-0.015);
-				b->iscolliding = iscolliding(b->getborder(), b2->getborder());
-				*/break;
+				break;
 			case GLUT_KEY_LEFT:
 				std::cout << " ARROW_LEFT\n";
-				/*t->turntop(2);
-				b->movex(-0.015);
-				b->iscolliding = iscolliding(b->getborder(), b2->getborder());
-				*/break;
+				break;
 			case GLUT_KEY_RIGHT:
 				std::cout << " ARROW_RIGHT\n";
-				/*t->turntop(-2);
-				b->movex(0.015);
-				b->iscolliding = iscolliding(b->getborder(), b2->getborder());
-				*/break;
+				break;
 			case GLUT_KEY_CTRL_L:
 				std::cout << "CTRL Left \n";
 
 				//can be upgraded to go left right forward back according to the direction vector
 				break;
 			}
-		}
+		}*/
 	}
 	else {
-		// if the scene  is menu scene  ,arrows will be able to navigate between buttons
-		switch (key) {
-		case GLUT_KEY_UP:
-			std::cout << " ARROW_UP\n";
-			engineincontrol->current_scene->decrementcursorposition();
-			break;
-		case GLUT_KEY_DOWN:
-			std::cout << " ARROW_DOWN\n";
-			engineincontrol->current_scene->incrementcursorposition();
-			break;
-		case GLUT_KEY_LEFT:
-			std::cout << " ARROW_LEFT\n";
-			break;
-		case GLUT_KEY_RIGHT:
-			std::cout << " ARROW_RIGHT\n";
-			break;
+		if (engineincontrol->current_scene->name._Equal("keybinding") && engineincontrol->current_scene->changing_key) {
+			std::string temp;
+			switch (key) {
+				case GLUT_KEY_UP:
+					temp = "up";
+					break;
+				case GLUT_KEY_DOWN:
+					temp = "down";
+					break;
+				case GLUT_KEY_LEFT:
+					temp = "left";
+					break;
+				case GLUT_KEY_RIGHT:
+					temp = "right";					
+					break;
+			}
+			keys[engineincontrol->current_scene->cursorposition - 1] = temp;
+			engineincontrol->current_scene->keys[engineincontrol->current_scene->cursorposition - 1] = temp;
+			engineincontrol->current_scene->changing_key = false;
+		}
+		else {
+			// if the scene  is menu scene  ,arrows will be able to navigate between buttons or when keybinding move between keys
+			switch (key) {
+			case GLUT_KEY_UP:
+				std::cout << " ARROW_UP\n";
+				engineincontrol->current_scene->decrementcursorposition();
+				break;
+			case GLUT_KEY_DOWN:
+				std::cout << " ARROW_DOWN\n";
+				engineincontrol->current_scene->incrementcursorposition();
+				break;
+			case GLUT_KEY_LEFT:
+				std::cout << " ARROW_LEFT\n";
+				break;
+			case GLUT_KEY_RIGHT:
+				std::cout << " ARROW_RIGHT\n";
+				break;
+			}
 		}
 	}
 }
@@ -350,6 +490,22 @@ void Controller::noclick_motion(int x, int y) {
 			}
 			//else if(y) //should be implemented for more levels
 			else if (y >= (4 * height / 5))  engineincontrol->current_scene->changecursorposition(engineincontrol->current_scene->NR_LEVELS+1);
+		}
+		else if (engineincontrol->current_scene->name._Equal("keybinding")) {
+			if (y >= (4 * height / 5))  engineincontrol->current_scene->changecursorposition(10);
+			else {
+				if (x >= 400 && x <= 750) {
+					if (y >= 80  && y <= 110) engineincontrol->current_scene->changecursorposition(1);
+					if (y >= 120 && y <= 155) engineincontrol->current_scene->changecursorposition(2);
+					if (y >= 160 && y <= 200) engineincontrol->current_scene->changecursorposition(3);
+					if (y >= 205 && y <= 240) engineincontrol->current_scene->changecursorposition(4);
+					if (y >= 250 && y <= 285) engineincontrol->current_scene->changecursorposition(5);
+					if (y >= 290 && y <= 325) engineincontrol->current_scene->changecursorposition(6);
+					if (y >= 335 && y <= 365) engineincontrol->current_scene->changecursorposition(7);
+					if (y >= 375 && y <= 410) engineincontrol->current_scene->changecursorposition(8);
+					if (y >= 420 && y <= 455) engineincontrol->current_scene->changecursorposition(9);
+				}
+			}
 		}
 		else{
 			for (int i = 1; i <= engineincontrol->current_scene->nrofbuttons; i++) {
@@ -508,6 +664,10 @@ void Controller::selectbasedoncursor() {
 		else {
 			engineincontrol->displaystartmenu();
 		}
+	}
+	else if (engineincontrol->current_scene->name._Equal("keybinding")) {
+	if (engineincontrol->current_scene->cursorposition == 10) engineincontrol->displayoptions();
+	else engineincontrol->current_scene->changing_key = !engineincontrol->current_scene->changing_key;
 	}
 }
 void Controller::displaydetectionrange() {

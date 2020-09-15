@@ -17,8 +17,10 @@
 #include "controleStation.h"
 #include "Aircraft.h"
 #include <math.h>
+
 #define M_PI acos(-1.)
-#define all_textures 0.55
+#define all_textures 0.89 // 31 letter characters so far -> <- __ up/down arrows
+
 
 //textures should be front / right / back / left /top /bot
 
@@ -60,6 +62,8 @@ GLuint level1, level2,level1_selected , level2_selected; //different level selec
 GLuint menubg, play, controls, credits, options, quit,cursor ,pausebg , cont ,deathbg,retry,smallcursor;//menu textures
 GLuint controlsbg, back;//controls texture
 GLuint keybindings, audio, video;//optionmenu textures
+GLuint keybinding_bg,letter_cursor,new_key; //keybindings menu
+std::vector<GLuint> letters; //ALL Letters for keybindings menu
 GLuint videofg, res800,res1200,res1600,quality_low,quality_medium,quality_high,vsync_on,vsync_off;//video menu textures
 GLuint useobject; //game ui textures
 GLuint gate_frontback,gatewall, gatebar_texture; //controller textures
@@ -108,6 +112,46 @@ void loadtext() {
 	///
 	loading_fg = SOIL_load_OGL_texture("resources/menu/loading_fg.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y);
 	loading_bar = SOIL_load_OGL_texture("resources/menu/loading_bar.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	display_loading_screen();
+	//loading letters should be fast  40 *40 
+	std::string all_letters = "abcdefghijklmnopqrstuvwxyz";
+	for (int i = 0; i < all_letters.size();i++) {
+
+		std::string p = "resources/menu/letters/";
+		p += all_letters[i]; p += ".png";
+		//std::cout << "current path is : " <<p << std::endl;
+		//char path[100]; strcpy(path, p.c_str());
+		GLuint temp_char = SOIL_load_OGL_texture(p.c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+		letters.push_back(temp_char);
+		loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+		display_loading_screen();
+	}
+	//loading left right up down arrows and space
+	GLuint temp_char = SOIL_load_OGL_texture("resources/menu/letters/left_arrow.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	letters.push_back(temp_char);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen(); 
+	temp_char = SOIL_load_OGL_texture("resources/menu/letters/right_arrow.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	letters.push_back(temp_char);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen(); 
+	temp_char = SOIL_load_OGL_texture("resources/menu/letters/up_arrow.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	letters.push_back(temp_char);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen(); 
+	temp_char = SOIL_load_OGL_texture("resources/menu/letters/down_arrow.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	letters.push_back(temp_char);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen(); 
+	temp_char = SOIL_load_OGL_texture("resources/menu/letters/space.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	letters.push_back(temp_char);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
+	letter_cursor = SOIL_load_OGL_texture("resources/menu/letters/letter_cursor.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
+	new_key = SOIL_load_OGL_texture("resources/menu/letters/new_key.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
 	display_loading_screen();
 	/// <summary>
 	/// loading tank TEXTURES
@@ -249,6 +293,14 @@ void loadtext() {
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
 	display_loading_screen();
 
+	/// <summary>
+	/// LOADING KEY_BINDINGS MENU TEXTURE
+	/// </summary>
+
+	keybinding_bg = SOIL_load_OGL_texture("resources/menu/keybinding_bg.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
+	
 	/// <summary>
 		/// LOADING VIDEO MENU TEXTURE
 		/// </summary>

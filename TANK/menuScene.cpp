@@ -6,12 +6,13 @@ menuScene::menuScene() {
 menuScene::menuScene(std::string n, std::string t ){
 	name = n; type = t;
 	current_res = 0; current_qual = 1; vsync = false;
-
+	changing_key = false; 
 	if (name._Equal("main")) nrofbuttons = 5;
 	else if (name._Equal("pause")) nrofbuttons = 3;
 	else if (name._Equal("options")) nrofbuttons = 4;
 	else if (name._Equal("video")) nrofbuttons = 7;
 	else if (name._Equal("level_selector")) nrofbuttons = NR_LEVELS + 1;
+	else if (name._Equal("keybinding")) nrofbuttons = 10; // for now we have 8 bindings + 1 back button   , change can  be done using clicks
 	else nrofbuttons = 1;
 	cursorposition = nrofbuttons;
 }
@@ -134,6 +135,18 @@ void menuScene::drawbackground() {
 				glTexCoord2d(1., 1.); glVertex3f(0.95, 0.7, -0.97);
 				glTexCoord2d(1., 0.); glVertex3f(0.95, -0.7, -0.97);
 			glEnd();
+		glDisable(GL_TEXTURE_2D);
+	}
+	else if (name._Equal("keybinding")) {
+	glBindTexture(GL_TEXTURE_2D, keybinding_bg);
+		glEnable(GL_TEXTURE_2D);
+		glBegin(GL_POLYGON);
+		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+			glTexCoord2d(0., 0.); glVertex3f(-0.95, -0.7, -1.01);
+			glTexCoord2d(0., 1.); glVertex3f(-0.95, 0.7, -1.01);
+			glTexCoord2d(1., 1.); glVertex3f(0.95, 0.7, -1.01);
+			glTexCoord2d(1., 0.); glVertex3f(0.95, -0.7, -1.01);
+		glEnd();
 		glDisable(GL_TEXTURE_2D);
 	}
 	else {
@@ -338,6 +351,62 @@ void menuScene::drawbuttons() {
 		glEnd();
 		glDisable(GL_TEXTURE_2D);
 	}
+	else if (name._Equal("keybinding")) {
+	std::string all_letters = "abcdefghijklmnopqrstuvwxyz";
+	//a way to draw keybindings 
+	float yoffset = 0;
+	for (int i = 0; i<keys.size();i++) {
+		std::string key = keys.at(i);
+		yoffset += 0.1;
+		if (key.size() > 1) {
+			if (key._Equal("left"))			glBindTexture(GL_TEXTURE_2D, letters.at(26));
+			else if (key._Equal("right"))	glBindTexture(GL_TEXTURE_2D, letters.at(27));
+			else if (key._Equal("up"))		glBindTexture(GL_TEXTURE_2D, letters.at(28));
+			else if (key._Equal("down"))	glBindTexture(GL_TEXTURE_2D, letters.at(29));
+			else if (key._Equal("space"))	glBindTexture(GL_TEXTURE_2D, letters.at(30));
+		}
+		else {
+			if (all_letters.find(key) != std::string::npos) 
+				glBindTexture(GL_TEXTURE_2D, letters.at(all_letters.find(key)));
+			else glBindTexture(GL_TEXTURE_2D, letters.at(30));
+		}
+		if ((changing_key)&&(i == cursorposition - 1)) {
+			glBindTexture(GL_TEXTURE_2D, new_key);
+			glEnable(GL_TEXTURE_2D);
+				glBegin(GL_POLYGON);
+					glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+					glTexCoord2d(0., 0.); glVertex3f(0.1, 0.53 - yoffset, -0.99);
+					glTexCoord2d(0., 1.); glVertex3f(0.1, 0.62 - yoffset, -0.99);
+					glTexCoord2d(1., 1.); glVertex3f(0.7, 0.62 - yoffset, -0.99);
+					glTexCoord2d(1., 0.); glVertex3f(0.7, 0.53 - yoffset, -0.99);
+				glEnd();
+			glDisable(GL_TEXTURE_2D);
+		}
+		else {
+			glEnable(GL_TEXTURE_2D);
+				glBegin(GL_POLYGON);
+					glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+					glTexCoord2d(0., 0.); glVertex3f(0.4, 0.53 - yoffset, -0.99);
+					glTexCoord2d(0., 1.); glVertex3f(0.4, 0.62 - yoffset, -0.99);
+					glTexCoord2d(1., 1.); glVertex3f(0.5, 0.62 - yoffset, -0.99);
+					glTexCoord2d(1., 0.); glVertex3f(0.5, 0.53 - yoffset, -0.99);
+				glEnd();
+			glDisable(GL_TEXTURE_2D);
+		}
+	 }
+	
+	//back button		
+		glBindTexture(GL_TEXTURE_2D, back);
+		glEnable(GL_TEXTURE_2D);
+		glBegin(GL_POLYGON);
+		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+		glTexCoord2d(0., 0.); glVertex3f(-0.95, -0.7, -0.96);
+		glTexCoord2d(0., 1.); glVertex3f(-0.95, -0.7 + (float)(1.4 / 5), -0.99);
+		glTexCoord2d(1., 1.); glVertex3f(0.95, -0.7 + (float)(1.4 / 5), -0.99);
+		glTexCoord2d(1., 0.); glVertex3f(0.95, -0.7, -0.96);
+		glEnd();
+		glDisable(GL_TEXTURE_2D);
+	}
 	else {
 		//retry button		
 		glBindTexture(GL_TEXTURE_2D, retry);
@@ -430,6 +499,34 @@ void menuScene::drawcursor() {
 		glTexCoord2d(1., 0.); glVertex3f(0.95, -0.7, -0.99);
 		glEnd();
 		glDisable(GL_TEXTURE_2D);
+	}
+	else if (name._Equal("keybinding")) {
+		if (cursorposition > 10)cursorposition = 10;
+		if (cursorposition < 1)cursorposition = 1;
+		if (cursorposition < 10) {
+			glBindTexture(GL_TEXTURE_2D, letter_cursor);
+			glEnable(GL_TEXTURE_2D);
+			glBegin(GL_POLYGON);
+			glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+			glTexCoord2d(0., 0.); glVertex3f(0., 0.526 - (cursorposition * 0.097), -0.98);
+			glTexCoord2d(0., 1.); glVertex3f(0., 0.616 - (cursorposition * 0.097), -0.98);
+			glTexCoord2d(1., 1.); glVertex3f(0.8, 0.616 - (cursorposition * 0.097), -0.98);
+			glTexCoord2d(1., 0.); glVertex3f(0.8, 0.526 - (cursorposition * 0.097), -0.98);
+			glEnd();
+			glDisable(GL_TEXTURE_2D);
+		}
+		else {
+			glBindTexture(GL_TEXTURE_2D, cursor);
+			glEnable(GL_TEXTURE_2D);
+			glBegin(GL_POLYGON);
+			glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+			glTexCoord2d(0., 0.); glVertex3f(-0.95, -0.7, -0.95);
+			glTexCoord2d(0., 1.); glVertex3f(-0.95, -0.7 + (float)(1.4 / 5), -0.95);
+			glTexCoord2d(1., 1.); glVertex3f(0.95, -0.7 + (float)(1.4 / 5), -0.95);
+			glTexCoord2d(1., 0.); glVertex3f(0.95, -0.7, -0.95);
+			glEnd();
+			glDisable(GL_TEXTURE_2D);
+		}
 	}
 	//no cursor for death screen yet 
 	
