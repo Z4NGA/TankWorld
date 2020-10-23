@@ -16,10 +16,11 @@
 #include "Tent.h"
 #include "controleStation.h"
 #include "Aircraft.h"
+#include "rocket_truck.h"
 #include <math.h>
 
 #define M_PI acos(-1.)
-#define all_textures 0.89 // 31 letter characters so far -> <- __ up/down arrows
+#define all_textures 0.91 // 31 letter characters so far -> <- __ up/down arrows
 
 
 //textures should be front / right / back / left /top /bot
@@ -33,6 +34,7 @@ tank* t;
 box* b;
 box* b2;
 box* b3;
+rocket_truck* rt; 
 std::vector<Tent*> tent;
 controleStation* cs;
 std::vector<Aircraft*> heli;
@@ -54,7 +56,7 @@ std::vector<float> xdebug {50,150,300};
 std::vector<float> zdebug ;
 GLuint loading_fg, loading_bar; //loading texture
 GLuint tex_2d,boxtx, redboxtx; //box textures
-GLuint green, blue, grey, yellow; //tank textures
+GLuint green, blue, grey, yellow,black; //tank textures
 GLuint sky1, ground1, wall1,skynight,ground6;//set of textures scene1 
 GLuint sky2, ground2, wall2;//set of textures scene2 
 GLuint sky3, ground3, wall3;//set of textures scene3 
@@ -67,7 +69,7 @@ std::vector<GLuint> letters; //ALL Letters for keybindings menu
 GLuint videofg, res800,res1200,res1600,quality_low,quality_medium,quality_high,vsync_on,vsync_off;//video menu textures
 GLuint useobject; //game ui textures
 GLuint gate_frontback,gatewall, gatebar_texture; //controller textures
-GLuint metal,alum,blackalum, orangealum;
+GLuint metal,alum,blackalum, orangealum,grid_glass;
 int h, w;
 float CamXpos=0., camYpos=1., camZpos=0.; //defines where the cam stands
 float centerx=0.7, centery= 0.9, centerz=0.;  //defines where the cam looks
@@ -168,6 +170,9 @@ void loadtext() {
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
 	display_loading_screen();
 	yellow = SOIL_load_OGL_texture("resources/camogen/camoyellow100.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
+	black = SOIL_load_OGL_texture("resources/camogen/camoblack.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_TEXTURE_REPEATS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
 	display_loading_screen();
 	/// <summary>
@@ -361,6 +366,9 @@ void loadtext() {
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
 	display_loading_screen();
 	orangealum = SOIL_load_OGL_texture("resources/material/orangealum.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT | SOIL_FLAG_TEXTURE_REPEATS);
+	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
+	display_loading_screen();
+	grid_glass = SOIL_load_OGL_texture("resources/material/grid_glass.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT | SOIL_FLAG_TEXTURE_REPEATS);
 	loadedtextures++; std::cout << "#### LOADING TEXTURES ! Please wait " << (float)loadedtextures / all_textures << "%\n";
 	display_loading_screen();
 
@@ -617,6 +625,8 @@ int main(int argc, char** argv)
 	b3->setposition(1., 0., 2.);
 	t = new tank(3.4, 1.8, 3.3);
 	t->setposition(15, 0., 4);
+	rt = new rocket_truck(5, 2.5, 3.);//x =2y
+	rt->setposition(7., 0., 4.);
 	heli.push_back(new Aircraft(7., 2., 1.5, "helicopter"));
 	heli.push_back(new Aircraft(7., 2., 1.5, "helicopter", "blackalum"));
 	heli.push_back(new Aircraft(7., 2., 1.5, "helicopter", "blackalum"));
@@ -662,7 +672,7 @@ int main(int argc, char** argv)
 		ge->addObjecttocurrentscene(tent[i]);
 	for (int i = 0; i < 4; i++)
 		ge->addObjecttocurrentscene(heli[i]);
-	
+	ge->addObjecttocurrentscene(rt);
 	ge->addObjecttocurrentscene(cs);
 	//adding objects to scenes
 	ge->setCurrentScene(beach);

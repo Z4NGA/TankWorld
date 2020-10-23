@@ -240,6 +240,8 @@ void Controller::action(int index) {
 		case 2: // tilt up  2
 			if (engineincontrol->controlled_object->type._Equal("tank"))
 				engineincontrol->controlled_object->tiltcannon(2.);
+			if (engineincontrol->controlled_object->type._Equal("rocket_truck"))
+				engineincontrol->controlled_object->tilt_launcher(2.);
 			break;
 		case 3: // fly/tilt down  3 
 			if (engineincontrol->controlled_object->generaltype._Equal("aircraft") || engineincontrol->controlled_object->generaltype._Equal("box"))
@@ -249,14 +251,20 @@ void Controller::action(int index) {
 			}
 			if (engineincontrol->controlled_object->type._Equal("tank"))
 				engineincontrol->controlled_object->tiltcannon(-2.);
+			if (engineincontrol->controlled_object->type._Equal("rocket_truck"))
+				engineincontrol->controlled_object->tilt_launcher(-2);
 			break;
 		case 4: // turn top left 4
 			if (engineincontrol->controlled_object->type._Equal("tank"))
 				engineincontrol->controlled_object->turntop(2.);
+			if (engineincontrol->controlled_object->type._Equal("rocket_truck"))
+				engineincontrol->controlled_object->turn_launcher(2.);
 			break;
 		case 5: // turn top right 5
 			if (engineincontrol->controlled_object->type._Equal("tank"))
 				engineincontrol->controlled_object->turntop(-2.);
+			if (engineincontrol->controlled_object->type._Equal("rocket_truck"))
+				engineincontrol->controlled_object->turn_launcher(-2.);
 			break;
 		case 6: // changescene  6
 			engineincontrol->changescene(BEACH_SCENE);

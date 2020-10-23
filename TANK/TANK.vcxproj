@@ -147,6 +147,7 @@
     <ClCompile Include="gameScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menuScene.cpp" />
+    <ClCompile Include="rocket_truck.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="tank.cpp" />
     <ClCompile Include="Tent.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="gameScene.h" />
     <ClInclude Include="menuScene.h" />
+    <ClInclude Include="rocket_truck.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="tank.h" />
     <ClInclude Include="Tent.h" />
